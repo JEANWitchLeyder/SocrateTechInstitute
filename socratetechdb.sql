@@ -1555,6 +1555,39 @@ SELECT COUNT(*) as questions_with_default_A
 FROM question_answers
 WHERE correct_answer = 'A' AND class_id = 7;
 
+USE socrate_tech_institute;
+
+CREATE TABLE attendance (
+  attendance_id INT AUTO_INCREMENT PRIMARY KEY,
+  student_id INT NOT NULL,
+  course_id INT NOT NULL,
+  date DATE NOT NULL,
+  status ENUM('Present','Absent','Late') NOT NULL,
+
+  INDEX(student_id),
+  INDEX(course_id)
+);
+
+CREATE TABLE grades (
+  grade_id INT AUTO_INCREMENT PRIMARY KEY,
+  student_id INT NOT NULL,
+  course_id INT NOT NULL,
+  assessment_name VARCHAR(100),
+  score DECIMAL(5,2),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE materials (
+  material_id INT AUTO_INCREMENT PRIMARY KEY,
+  course_id INT NOT NULL,
+  teacher_id INT NOT NULL,
+  title VARCHAR(150),
+  file_path VARCHAR(255),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+USE socrate_tech_institute;
+
 
 
 
