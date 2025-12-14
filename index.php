@@ -7,8 +7,6 @@ include 'partials/header.php';
 $error = '';
 ?>
 
-
-  
     <?php  include 'partials/linkheader.php';?>
     <section class="new-hero-ui-wrapper">
     <section class="new-hero-ui">
@@ -476,7 +474,10 @@ $error = '';
       </section>
       <section class="footer-body">
         <div class="links-container">
+          <div class="title">
           <h2>Accueil</h2>
+          </div>
+        
           <a href="">Présentation</a>
           <a href="">Pourquoi SocrateTech ?</a>
           <a href="">Témoignages</a>
@@ -484,7 +485,10 @@ $error = '';
         </div>
 
         <div class="links-container">
-          <h2>Classes & Cours</h2>
+        <div class="title">
+        <h2>Classes & Cours</h2>
+          </div>
+          
           <a href="">Filières Académiques</a>
           <a href="">Cours Modernes</a>
           <a href="">Agriculture & IA</a>
@@ -492,7 +496,10 @@ $error = '';
         
         </div>
         <div class="links-container">
+          <div class="title">
           <h2>Inscription</h2>
+          </div>
+          
           <a href="">Comment s’inscrire ?</a>
           <a href="">Examens d’entrée</a>
           <a href="">Documents requis</a>
@@ -500,21 +507,24 @@ $error = '';
         </div>
      
         <div class="links-container">
+          <div class="title">
           <h2>Contact</h2>
-          <div class="links-container-contact"> <h3>Adresse :</h3>
+          </div> 
+          
+          <div class="links-container-contact"> 
             <a href="">Carrefour, Haïti</a></div>
-          <div class="links-container-contact"><h3> Téléphone :</h3>
+          <div class="links-container-contact">
             <a href="">+509 45 67 89 00</a></div>
-          <div class="links-container-contact"><h3>Email :</h3>
+          <div class="links-container-contact">
             <a href="">info@socratetech.edu.ht</a></div>
-          <div class="links-container-contact"> <h3>Heures :</h3>
+          <div class="links-container-contact">
             <a href="">Lun-Ven, 8h - 16h</a></div>
              
         </div>
       </section>
       <section class="footer-end">
         <p><i class="fa-regular fa-copyright"></i> 2025 SocrateTech Institute. Tous droits réservés.</p>
-        <p>Développé avec passion pour propulser la nouvelle génération haïtienne vers l'excellence éducative et technologique.</p>
+        
       </section>
     </footer>
   </section>
