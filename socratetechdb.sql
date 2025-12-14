@@ -1,8 +1,4 @@
-/*
 
-CREATE DATABASE socrate_tech_institute;
-USE socrate_tech_institute;
-*/
 
 CREATE TABLE users(
 user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -148,7 +144,7 @@ INSERT INTO attendance (student_id, course_id, date, status, remarks) VALUES
 
 
 
-/*USE socrate_tech_institute;*/
+
 SELECT * FROM users WHERE password = 'pass123';
 
 ALTER TABLE parents
@@ -162,7 +158,7 @@ MODIFY password VARCHAR(100) NOT NULL;
 
 SELECT * FROM users;
 
-/*USE socrate_tech_institute;*/
+
 
 CREATE TABLE admin(
 admin_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -222,13 +218,13 @@ INSERT INTO teachers
 ('Ines','Charles',1,'ines.charles@sti.edu','+509-3011-2306',12),
 ('Chris','Paul',2,'chris.paul@sti.edu','+509-3011-2307',13);
 
-/*USE socrate_tech_institute;*/
+
 
 DROP TABLE IF EXISTS classrooms;
 
 DROP TABLE subjects;
 
-/*USE socrate_tech_institute;*/
+
 
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -716,7 +712,7 @@ VALUES
 (29, 3),  (29, 4),
 (30, 5),  (30, 6);
 
-/*USE socrate_tech_institute;*/
+
 
 ALTER TABLE courses
 ADD COLUMN course_code VARCHAR(20);
@@ -1198,7 +1194,7 @@ SHOW TABLES;
 
 SELECT DATABASE();  
 
-/*USE socrate_tech_institute;*/
+
 
 ALTER TABLE application
   ADD COLUMN application_code VARCHAR(20) UNIQUE,
@@ -1214,7 +1210,7 @@ ALTER TABLE application
   ADD COLUMN IF NOT EXISTS transcripts_paths TEXT NULL,
   ADD COLUMN IF NOT EXISTS application_code  VARCHAR(50) NULL;
 
-/*USE socrate_tech_institute;*/
+
 
 ALTER TABLE application
   ADD COLUMN last_school     VARCHAR(255) AFTER address,
@@ -1222,7 +1218,6 @@ ALTER TABLE application
 ALTER TABLE application
   DROP COLUMN photo_passport;
 
-U/*SE socrate_tech_institute;*/
 
 CREATE TABLE quiz_user_answers(
  quiz_user_answers_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -1498,7 +1493,7 @@ INSERT INTO question_answers (class_id, category_id, question_text, optionA, opt
 (7, 4, 'Which continent is the Sahara Desert in?', 'Asia', 'Africa', 'Australia', 'Europe'),
 (7, 4, 'Which document begins with “We the People…”?', 'Universal Declaration of Human Rights', 'US Constitution', 'Magna Carta', 'UN Charter');
 
-/*USE socrate_tech_institute;*/
+
 
 ALTER TABLE question_answers 
 ADD COLUMN correct_answer CHAR(1) NOT NULL DEFAULT 'A' 
@@ -1558,7 +1553,7 @@ SELECT COUNT(*) as questions_with_default_A
 FROM question_answers
 WHERE correct_answer = 'A' AND class_id = 7;
 
-/*USE socrate_tech_institute;*/
+
 
 CREATE TABLE attendance (
   attendance_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -1589,7 +1584,7 @@ CREATE TABLE materials (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-/*USE socrate_tech_institute;*/
+
 
 
 
