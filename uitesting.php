@@ -37,7 +37,12 @@ $error = '';
    ---->
 
      <div class="home-mega-section">
-     
+       <div class="title">
+         <h1>Education,technologie et Solution réelles</h1> 
+       </div>
+       <div class="technology-section">
+         
+       </div>
      </div>
     
     

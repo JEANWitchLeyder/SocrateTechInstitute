@@ -59,21 +59,35 @@
     /**/
     .home-mega-section{
         width: 100%;
-        background-color: red;
-        height: 400px;
+        height: 100vh;
+        background-color:rgb(10, 10, 39);
+        height: 110vh;
         margin-top:30px;
         position: relative;
-        
+        overflow: hidden;
       }
       
-      .home-mega-section-top::before{
+      .home-mega-section::before{
         content: '';
-        height: 100px;
-        width: 400px;
         z-index: 10;
-        background-color: blue;
+        background-color: var(--color-background);
         position: absolute;
-        top: 0;
-        left: 0;
-      
+        width: 250%;
+        top: -20%;
+        left: -40px;
+        transform: rotate(-6deg);
+        height: 200px;
       }
+      .home-mega-section::after{
+        content: '';
+        z-index: 10;
+        background-color: var(--color-background);
+        position: absolute;
+        width: 250%;
+        height: 200px;
+        bottom: -20%;
+        right: -40px;
+        transform: rotate(-6deg);
+      }
+
+      

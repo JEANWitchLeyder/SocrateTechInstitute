@@ -930,11 +930,12 @@ content:'';
 position: absolute;
 background: var(--color-background);
 width: 250%;
-height: 35%;
 top: -30%;
 left: -40px;
-transform: rotate(-7deg);
+transform: rotate(-6deg);
+height: 200px;
 }
+
 .footer-wrapper{
 background-color: var(--color-background);
 }
