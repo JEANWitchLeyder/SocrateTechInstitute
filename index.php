@@ -75,6 +75,8 @@ $error = '';
       <h1>La Vie sur le Campus</h1>
       </div>
 
+      
+
 
   <div class="tabs">
     <button class="tabs-buttons btn-active" data-tab="1">Infrastructures</button>
@@ -146,10 +148,6 @@ $error = '';
 <div class="campus-grid-item">
 <img src="images/tabUIImages/building/library2.jpg" alt="">
 </div>
-
-
-
-    
 
   </div>
 </section>
@@ -229,6 +227,7 @@ $error = '';
           </div>
         </div>
       </section>
+       
 
       <section class="filieres-wrapper">
         <h1>Parcours Académiques & Cours Modernes Professionnalisants</h1>
@@ -337,11 +336,15 @@ $error = '';
           <p>Finaliser l'inscription</p>
         </div>
       </section>
-      ------>
+        ------>
+    
 
       <section class="testimonials-wrapper">
-          <h1>Témoignages de Confiance</h1>
-          <p class="testimonial-paragraph">À SocrateTech, chaque voix compte. Découvrez ce que nos élèves et leurs parents pensent de notre approche éducative moderne et humaine. Leurs expériences sont notre plus belle preuve d’impact.</p>
+        <div class="title">
+        <h1>Témoignages de Confiance</h1>
+        </div>
+          
+          <p class="testimonial-paragraph">À SocrateTech, chaque voix compte. Découvrez ce que nos élèves et leurs parents pensent de notre approche éducative moderne et humaine. <br>Leurs expériences sont notre plus belle preuve d’impact.</p>
         <div class="testimonial-container">
           <div class="testimonial-element">
 
@@ -371,6 +374,22 @@ $error = '';
          
           
         </div>
+
+        <div class="testimonial-element">
+
+          <div class="testimonial-top">     
+            <img src="images/testimonial/testimonial2.png" alt="">
+          </div>
+          <div class="testimonial-text">
+            <p><i class="fa-solid fa-quote-left"></i>Grâce aux ateliers pratiques, j’ai pris confiance et appris à mieux collaborer. SocrateTech m’aide à progresser chaque jour dans un environnement stimulant.<i class="fa-solid fa-quote-right"></i></p>
+            <div class="extra-student-info">
+              <h2>Naomi B.</h2>
+            <p>Etudiante en NS3</p>
+            </div>
+          </div> 
+
+
+      </div>
         <div class="testimonial-element">
 
           <div class="testimonial-top">     
@@ -382,16 +401,16 @@ $error = '';
               <h2>Sabrina L.</h2>
             <p>Etudiante en NS1</p>
             </div>
-          </div> 
-         
-          
+          </div>   
+        </div>  
         </div>
-        </div>
-
       </section>
 
       <section class="ourpartners-wrapper">
+        <div class="title">
         <h1>Un Réseau Solide de Partenaires</h1>
+        </div>
+        
         <p>SocrateTech Institute est fier de collaborer avec des institutions prestigieuses qui partagent notre vision d’une éducation moderne, inclusive et tournée vers l’avenir. Ces partenariats renforcent notre impact sur la jeunesse haïtienne et soutiennent notre engagement à offrir une formation de qualité, ancrée dans les besoins du monde professionnel et de la société.</p>
         <div class="ourpartners-container">
           <figure class="ourpartners-element"><img src="images/testimonial/codingnobg.png" alt=""></figure>
