@@ -59,12 +59,12 @@
     /**/
     .home-mega-section{
         width: 100%;
-        height: 100vh;
         background-color:rgb(10, 10, 39);
-        height: 110vh;
+        height: 250vh;
         margin-top:30px;
         position: relative;
         overflow: hidden;
+        padding:  200px    var(--container-pad);
       }
       
       .home-mega-section::before{
@@ -90,4 +90,161 @@
         transform: rotate(-6deg);
       }
 
-      
+      .home-mega-section h1,
+      .home-mega-section h2,
+      .home-mega-section h3,
+      .home-mega-section p{
+        color: white;
+      }
+
+      .home-mega-section h1{
+        text-align: center;
+      }
+
+      .technology-section{
+        display: grid;
+        width: 100%;
+        
+        
+        grid-template-columns: repeat(7,200px);
+        grid-template-rows: repeat(3,200px);
+        gap: 10px;
+      }
+     
+      .tech-grid-element .tech-grid-title{
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: 20px;
+          left: 10px;
+
+      }
+      .tech-grid-element{
+        position: relative;
+        border-radius: 25px;
+      }
+      .tech-grid-element:nth-child(1){
+        background-color: blue;
+        grid-column: span 3;
+        grid-row: span 2;
+
+      }
+      .tech-grid-element:nth-child(2){
+        background-color: green;
+        grid-column: 1/2;
+        grid-row: 3/4;
+
+      }
+      .tech-grid-element:nth-child(3){
+        background-color:violet;
+        grid-column: 2/3;
+        grid-row: 3/4;
+      }
+      .tech-grid-element:nth-child(4){
+        background-color: goldenrod;
+        grid-column: 3/4;
+        grid-row: 3/4;
+      }
+      .tech-grid-element:nth-child(5){
+        grid-column: span 4;
+        grid-row: span 3;
+        background-color:aqua;
+        background: url(../images/hero-image.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+      }
+     
+      .moncash-section{
+        display: grid;
+        grid-template-columns: repeat(7,200px);
+        margin: var(--vertical-spacing) 0;
+        grid-template-rows: repeat(2,200px);
+        gap: 10px;
+      }
+
+      .moncash-section-element:nth-child(1){
+         grid-column:span 4;
+         background-color: blue;
+          grid-row: span 2;
+          border-radius: 25px;
+          position: relative;
+      }
+      .moncash-section-element:nth-child(2){
+        grid-column:span 3;
+        grid-row: span 2;
+        background: url(../images/moncash.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        border-radius: 25px;
+        
+
+
+     }
+     .moncash-section-element:nth-child(1) .moncash-section-text:nth-child(1){
+        position: absolute;
+        content:'';
+        bottom: 40px;
+        left: 10px;
+     }
+     .moncash-section-element:nth-child(1) .moncash-section-text:nth-child(2){
+        position: absolute;
+        content:'';
+        bottom: 25px;
+        left: 10px;
+     }
+     .moncash-section-element:nth-child(1) .moncash-section-text:nth-child(3){
+        position: absolute;
+        content:'';
+        bottom: 10px;
+        left: 10px;
+     }
+
+     .ourdevelopers-section img{
+        width: 100%;
+        height: 100%;
+     }
+     .ourdevelopers-section{
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      gap: 20px;
+    
+     }
+     .first-developer{
+       flex-basis: 100%;
+       display: grid;
+       grid-template-columns: repeat(7,150px);
+       grid-template-rows: repeat(2,150px);
+       gap: 20px;
+       background-color: blue;
+       border-radius: 25px;
+     }
+     .first-developer-part-1{
+        grid-column: span 2;
+        grid-row: span 2;
+     }
+     .first-developer-part-2{
+        grid-column: span 5;
+        grid-row: span 2;
+     }
+     .second-developer{
+        flex-basis: 100%;
+        display: grid;
+        grid-template-columns: repeat(7,200px);
+        grid-template-rows: repeat(2,100px);
+        gap: 20px;
+        background-color: red;
+        border-radius: 25px;
+      }
+      .second-developer-part-1{
+        grid-column: span 4;
+        grid-row: span 2;
+      }
+      .second-developer-part-2{
+        grid-column: span 2;
+        grid-row: span 2;
+      }
