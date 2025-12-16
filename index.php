@@ -387,8 +387,6 @@ $error = '';
             <p>Etudiante en NS3</p>
             </div>
           </div> 
-
-
       </div>
         <div class="testimonial-element">
 

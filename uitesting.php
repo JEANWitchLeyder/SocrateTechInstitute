@@ -5,6 +5,7 @@ include 'partials/functions.php';
 include 'partials/header.php';
 include 'partials/linkheader.php';
 
+
 $error = '';
 ?>
 
@@ -17,6 +18,8 @@ $error = '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UI testing Parts</title>
+    l
+
     
 </head>
 <body>
@@ -34,7 +37,7 @@ $error = '';
    ---->
 
      <div class="home-mega-section">
-        
+     
      </div>
     
     
