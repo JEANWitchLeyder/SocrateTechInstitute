@@ -355,8 +355,6 @@ $error = '';
             <p>Etudiante en NS2</p>
             </div>
           </div> 
-         
-          
         </div>
         <div class="testimonial-element">
 

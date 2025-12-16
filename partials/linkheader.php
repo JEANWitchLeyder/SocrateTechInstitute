@@ -12,7 +12,7 @@ require_once __DIR__ . '/header.php';
     </div>
 
     <nav class="navigation-bar">
-        <!-- removed: <div class="hamburger-menu close-x">...</div> -->
+         <div class="hamburger-menu close-x">...</div>
 
         <div class="nav-left">
             <a href="index.html">
@@ -21,16 +21,15 @@ require_once __DIR__ . '/header.php';
         </div>
 
         <div class="nav-center">
-            <a class="accueil" href="pages/index.php">Accueil</a>
+            <a class="accueil" href="index.php">Accueil</a>
             <a class="filières">Classes</a>
-            <a class="filières">À Propos</a>
-            <a class="inscription">Inscription</a>
-            <a class="vieScolaire">Vie Scolaire</a>
+            <a class="about" href="about.php">À Propos</a>
+            <a class="" href="admission/application.php">Inscription</a>
         </div>
 
         <div class="nav-right">
-            <a href="register.php" class="contact button register-btn">Enregistrer</a>
-            <a href="login.php" class="connexion button connexion-btn">Connexion</a>
+            <a href="authentification/register.php" class="contact button register-btn">Enregistrer</a>
+            <a href="authentification/login.php" class="connexion button connexion-btn">Connexion</a>
         </div>
     </nav>
 </header>
