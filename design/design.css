@@ -10,6 +10,7 @@
 --color-subtext: #6B7280;
 --color-error: #E57373;
 --bg-color: rgb(10, 10, 39);
+--main-blue:rgb(10, 10, 39);
 
 --font-heading: 'Poppins', sans-serif;
 --font-body: 'Roboto', sans-serif;
@@ -3273,8 +3274,6 @@ margin-bottom:-5px!important;
       padding-top: 200px;
       color: white;
     }
-   
-    
     .home-mega-section::before{
       content: '';
       z-index: 10;
@@ -3291,6 +3290,7 @@ margin-bottom:-5px!important;
       content: '';
       z-index: 10;
       background-color: var(--color-background);
+
       position: absolute;
       width: 250%;
       height: 43vh;
@@ -3323,29 +3323,42 @@ margin-bottom:-5px!important;
         display: block;
         position: absolute;
         bottom: 20px;
-        left: 10px;
+        left: 20px;
     }
     .tech-grid-element{
       position: relative;
       border-radius: 25px;
     }
     .tech-grid-element:nth-child(1){
-      background-color: blue;
+      background:url(../images/techenvironment.jpg);
       grid-column: span 3;
       grid-row: span 2;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .tech-grid-element:nth-child(1) h2{
+      color: var(--main-blue);
     }
     .tech-grid-element:nth-child(2){
-      background-color: green;
+      background-color:var(--color-teal);
       grid-column: 1/2;
       grid-row: 3/4;
+      position: relative;
+      display: block;
     }
+   
     .tech-grid-element:nth-child(3){
-      background-color:violet;
+      background-color:var(--color-background);
       grid-column: 2/3;
       grid-row: 3/4;
     }
+    .tech-grid-element:nth-child(3) h3,
+    .tech-grid-element:nth-child(4) h3{
+      color: var(--main-blue);
+    }
     .tech-grid-element:nth-child(4){
-      background-color: goldenrod;
+      background-color:var(--color-background);
       grid-column: 3/4;
       grid-row: 3/4;
     }
@@ -3370,9 +3383,15 @@ margin-bottom:-5px!important;
     .moncash-section-element:nth-child(1){
        grid-column:span 4;
        grid-row: span 3;
-       background-color:red;
+       background:url(../images/online-payment.png);
+       background-position: center;
+       background-repeat: no-repeat;
+       background-size: cover;
         border-radius: 25px;
         position: relative;
+    }
+    .moncash-section-element:nth-child(1) h2{
+       color: var(--main-blue);
     }
     .moncash-section-element:nth-child(2){
       grid-column:span 3;
@@ -3387,8 +3406,8 @@ margin-bottom:-5px!important;
    .moncash-section-element:nth-child(1) .moncash-section-text:nth-child(1){
       position: absolute;
       content:'';
-      bottom: 40px;
-      left: 10px;
+      bottom: 20px;
+      left: 20px;
    }
    .moncash-section-element:nth-child(1) .moncash-section-text:nth-child(2){
       position: absolute;
@@ -3435,10 +3454,10 @@ margin-bottom:-5px!important;
       margin-top: 20px;
     }
     .ourdeveloper-right{
-      flex-basis: 60%;   
+      flex-basis: 60% !important;   
     }
     .ourdeveloper-left{
-       flex-basis: 40%;
+       flex-basis: 40% !important;
     }
     .skills{
       display: flex;

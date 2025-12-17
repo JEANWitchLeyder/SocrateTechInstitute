@@ -31,7 +31,7 @@ $error = '';
      </div>
     </section>
     </section>
-   ---->
+  
 
 <section class="home-mega-section">
        <div class="title">
