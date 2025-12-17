@@ -438,6 +438,7 @@ $error = '';
         <div class="moncash-section-element">      
         </div>    
         </section>
+        <!------
         <div class="title">
        <h1>Nos Développeurs</h1> 
        </div>
@@ -448,7 +449,7 @@ $error = '';
         </div>
         <div class="tutor-info-right ourdeveloper-right">
           <h2>JEAN W. Leyder</h2>
-          <h3>Etudiant en Sciences Informatiques à Yuan Ze University</h3>
+          
          <h4>Intérêt en Web développement</h4>
           <strong>Technologies utilisées: HTML,CSS,JS,MySQL,PHP</strong><p></p>
           <div class="contact-info">
@@ -467,7 +468,7 @@ $error = '';
         </div>
         <div class="tutor-info-right ourdeveloper-right">
           <h2>JEAN W. Leyder</h2>
-          <h3>Etudiant en Sciences Informatiques à Yuan Ze University</h3>
+          
          <h4>Intérêt en Web développement</h4>
           <strong>Technologies utilisées: HTML,CSS,JS,MySQL,PHP</strong><p></p>
           <div class="contact-info">
@@ -479,6 +480,7 @@ $error = '';
           </div>       
         </div>
        </div>
+       ------->
        
 </section>
 </section>
