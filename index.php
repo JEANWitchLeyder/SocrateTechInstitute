@@ -406,7 +406,7 @@ $error = '';
 
 <!------------Mega Section Part----------->
 <section class="home-mega-section">
-       <div class="title">
+       <div class="title home-mega-main-title">
        <h1>Education,technologie et Solution réelles</h1> 
        </div>
        <section class="technology-section">
