@@ -36,8 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = isset($_POST['role'])
         ? mysqli_real_escape_string($connect, trim(strip_tags($_POST['role'])))
         : '';
-
-    // ✅ fix: each field checked separately
     if (
         empty($username) ||
         empty($email) ||
@@ -68,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'parent'  => 'parentdash.php',
                 'teacher' => 'teacherdash.php',
                 'student' => 'studentdash.php',
-                'admin'   => 'admindash.php'
+                'admin'   => '../dashboards/admindash.php'
             ];
 
             if (!isset($routes[$role])) {
@@ -167,6 +165,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <?php
-// ✅ correct footer path from /authentification
 require_once __DIR__ . '/../partials/footer.php';
 ?>

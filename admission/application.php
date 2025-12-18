@@ -109,9 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         empty($email)        || empty($address)      || empty($last_class)   ||
         empty($last_school)  || empty($modern_course)
     ) {
-        $error = "The fields cannot be empty";
+        $error = "Fields cannot be empty";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = "Incorrect email format";
+        $error = "Invalid email format";
     } elseif (!preg_match('/^\+?[0-9]{8,15}$/', $phone)) {
         $error = "Invalid phone number format";
     }
@@ -206,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <main>
   <div class="application-notice-container"> 
     <div class="application-notice-item">
-      <p><i class="fa-solid fa-quote-left"></i>Remplissez ce formulaire pour soumettre votre candidature et rejoindre la communauté Socrate Tech Institute. Toutes les informations seront traitées de manière confidentielle.<i class="fa-solid fa-quote-right"></i></p>
+      <p><i class="fa-solid fa-quote-left"></i>Fill out this form to submit your application and join the Socrate Tech Institute community. All information will be handled confidentially.<i class="fa-solid fa-quote-right"></i></p>
     </div>
   </div>
 
@@ -223,43 +223,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="personal-information personal-information-grid-part-1">
     <div class="photo-upload">
       <label for="photoInput" class="photo-frame" id="photoFrame">
-        <span id="photoText">Ajouter Photo</span>
-        <img id="photoPreview" alt="Prévisualisation"
+        <span id="photoText">Add Photo</span>
+        <img id="photoPreview" alt="Preview"
              style="display:none; max-width:100%; height:auto; border-radius:10px;">
       </label>
       <input type="file" id="photoInput" class="photo-profile"
              name="photo_profile" accept="image/*" hidden>
     </div>
 
-    <label for="lastname">Nom de Famille</label>
+    <label for="lastname">Last Name</label>
     <input type="text" class="fullname" name="lastName" required
            value="<?= htmlspecialchars($last_name, ENT_QUOTES, 'UTF-8'); ?>">
 
-    <label for="firstname">Prénom</label>
+    <label for="firstname">First Name</label>
     <input type="text" class="fullname" name="firstName" required
            value="<?= htmlspecialchars($first_name, ENT_QUOTES, 'UTF-8'); ?>">
 
-    <label for="dateOfBirth">Date de Naissance</label>
+    <label for="dateOfBirth">Date of Birth</label>
     <input type="date" class="dateOfBirth" name="dateOfBirth" required
            value="<?= htmlspecialchars($date_of_birth, ENT_QUOTES, 'UTF-8'); ?>">
 
-    <label for="sexe">Sexe</label><br>
-    <input type="radio" id="homme" name="sexe" value="Homme" required
-           <?= $sex === 'Homme' ? 'checked' : '' ?>>
-    <label for="homme">Homme</label>
+    <label for="sexe">Gender</label><br>
+    <input type="radio" id="homme" name="sexe" value="Male" required
+           <?= $sex === 'Male' ? 'checked' : '' ?>>
+    <label for="homme">Male</label>
 
-    <input type="radio" id="femme" name="sexe" value="Femme"
-           <?= $sex === 'Femme' ? 'checked' : '' ?>>
-    <label for="femme">Femme</label>
+    <input type="radio" id="femme" name="sexe" value="Female"
+           <?= $sex === 'Female' ? 'checked' : '' ?>>
+    <label for="femme">Female</label>
 
-    <label for="birthplace">Lieu de Naissance (Ville en Haïti)</label>
+    <label for="birthplace">Place of Birth (City in Haiti)</label>
     <select id="birthplace" name="birthplace" required>
-      <option value="">Sélectionnez une ville</option>
+      <option value="">Select a city</option>
 
       <option value=""><script>loadHaitiCities();</script></option>
     </select>
 
-    <label for="phoneNumber">Téléphone</label>
+    <label for="phoneNumber">Phone</label>
     <input type="phone" class="phone" name="phone"
            value="<?= htmlspecialchars($phone, ENT_QUOTES, 'UTF-8'); ?>">
 
@@ -267,16 +267,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="email" class="email" name="email"
            value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>">
 
-    <label for="address">Adresse Actuelle</label>
+    <label for="address">Current Address</label>
     <input type="text" class="address" name="address"
            value="<?= htmlspecialchars($address, ENT_QUOTES, 'UTF-8'); ?>">
   </div>
   
   <div class="personal-information-grid-part-2">
     <div class="academic-information">
-      <legend>Informations Académiques</legend>
+      <legend>Academic Information</legend>
       <div class="last-grade-completed">
-        <label for="lastclass">Dernier niveau complété : </label>
+        <label for="lastclass">Last grade completed: </label>
         <select name="lastclass" id="lastclass" required>
           <option value="">Select a class</option>
           <?php foreach ($classesList as $cls): ?>
@@ -290,31 +290,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
       
       <div class="last-school-completed">
-        <label for="lastschool">Dernier établissement fréquenté</label>
+        <label for="lastschool">Last school attended</label>
         <input type="text" name="lastSchool" class="lastSchool"
                value="<?= htmlspecialchars($last_school, ENT_QUOTES, 'UTF-8'); ?>">
       </div>
 
-      <label for="modernCourses">Intérêts pour les cours modernes :</label>
+      <label for="modernCourses">Interests in modern courses:</label>
       <div class="programming">
         <input type="radio" name="modernCourse" id="programming"
-               value="programmation" required
-               <?= $modern_course === 'programmation' ? 'checked' : '' ?>>
-        <label for="programming">Programmation</label>
+               value="programming" required
+               <?= $modern_course === 'programming' ? 'checked' : '' ?>>
+        <label for="programming">Programming</label>
       </div>
 
       <div class="ai">
         <input type="radio" name="modernCourse" id="AI"
-               value="intelligence_artificielle"
-               <?= $modern_course === 'intelligence_artificielle' ? 'checked' : '' ?>>
-        <label for="AI">Intelligence Artificielle</label>
+               value="artificial_intelligence"
+               <?= $modern_course === 'artificial_intelligence' ? 'checked' : '' ?>>
+        <label for="AI">Artificial Intelligence</label>
       </div>
   
       <div class="cybersecurity">
         <input type="radio" name="modernCourse" id="cybersecurity"
-               value="cybersecurite"
-               <?= $modern_course === 'cybersecurite' ? 'checked' : '' ?>>
-        <label for="cybersecurity">Cybersécurité</label>
+               value="cybersecurity"
+               <?= $modern_course === 'cybersecurity' ? 'checked' : '' ?>>
+        <label for="cybersecurity">Cybersecurity</label>
       </div>
 
       <div class="agriculture">
@@ -326,19 +326,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <div class="first-aid">
         <input type="radio" name="modernCourse" id="firstAid"
-               value="premiers_soins"
-               <?= $modern_course === 'premiers_soins' ? 'checked' : '' ?>>
-        <label for="firstAid">Premiers Soins</label>
+               value="first_aid"
+               <?= $modern_course === 'first_aid' ? 'checked' : '' ?>>
+        <label for="firstAid">First Aid</label>
       </div>
     </div>
 
     <div class="requiredDocuments">
-      <legend>Documents Requis</legend>
+      <legend>Required Documents</legend>
       <section class="required-documents-flex-container">
         <div class="birthAct file-box" id="birthActBox">
           <label for="birthActInput">
-            <span>Acte de Naissance ou Extrait des Archives</span>
-            <span class="file-name">Aucun fichier choisi</span>
+            <span>Birth Certificate or Archive Extract</span>
+            <span class="file-name">No file chosen</span>
           </label>
           <input type="file" id="birthActInput" class="birthAct-doc"
                  name="birth_act" accept=".jpg,.jpeg,.png,.pdf" hidden>
@@ -346,9 +346,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="transcript file-box" id="transcriptsBox">
           <label class="file-click-zone">
-            <span class="file-title">Relevés de notes</span>
-            <strong>(incluant toutes les classes précédentes et la dernière classe)</strong>
-            <span class="file-name">Aucun fichier choisi</span>
+            <span class="file-title">Transcripts</span>
+            <strong>(including all previous grades and the most recent grade)</strong>
+            <span class="file-name">No file chosen</span>
           </label>
           <input type="file" id="transcriptsInput" name="transcripts[]" multiple
                  accept=".jpg,.jpeg,.png,.pdf" hidden>
@@ -360,10 +360,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="validation-input">
         <input type="checkbox" id="validation" name="validation"
                <?= !empty($_POST['validation']) ? 'checked' : '' ?>>
-        <label for="textConfirm">Je Certifie que toutes les informations sont exactes et que les documents téléchargés sont authentiques.</label>
+        <label for="textConfirm">I certify that all the information is accurate and that the uploaded documents are authentic.</label>
       </div>
       <div class="button-container">
-        <button id="submitRequest" class="button submit-button">Soumettre ma candidature</button>
+        <button id="submitRequest" class="button submit-button">Submit my application</button>
       </div>
     </div>
   </div>
@@ -415,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     input.addEventListener('change', function () {
       if (!input.files || input.files.length === 0) {
-        span.textContent = 'Aucun fichier choisi';
+        span.textContent = 'No file chosen';
         return;
       }
 
@@ -431,9 +431,6 @@ document.addEventListener('DOMContentLoaded', function () {
   attachFileName('birthActInput', 'birthActBox');
   attachFileName('transcriptsInput', 'transcriptsBox');
 });
-
-
-
 </script>
 
 <script src="../js/script.js"></script>
@@ -441,3 +438,4 @@ document.addEventListener('DOMContentLoaded', function () {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
 </body>
 </html>
+```0

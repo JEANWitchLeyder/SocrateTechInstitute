@@ -33,9 +33,9 @@ if(is_user_logged_in()){
       $stmt = mysqli_prepare($connect,$sql);
       mysqli_stmt_bind_param($stmt,'s',$username);
       
-      //$result = mysqli_stmt_get_result($stmt); 
      
-      if( !mysqli_stmt_execute($stmt)      /**$result && ($user = mysqli_fetch_assoc($result))*/){
+     
+      if( !mysqli_stmt_execute($stmt)){
           if(password_verify($password,$user['password'])){
             $_SESSION['username'] = $username;
             $_SESSION['user_id'] = $user['user_id'];

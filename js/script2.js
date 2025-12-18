@@ -364,11 +364,13 @@ function initChart() {
 
   el.dataset.rendered = "1";
 
+  // Socrate Tech Institute - Example dashboard data
+  // Bar chart: Monthly Admissions (Applications Received)
   const options = {
     series: [
       {
-        name: "Inflation",
-        data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+        name: "Admissions (Applications)",
+        data: [18, 25, 22, 30, 28, 35, 40, 38, 26, 29, 33, 45],
       },
     ],
     chart: { height: 350, type: "bar" },
@@ -377,24 +379,13 @@ function initChart() {
     },
     dataLabels: {
       enabled: true,
-      formatter: (v) => v + "%",
+      formatter: (v) => v,
       offsetY: -20,
       style: { fontSize: "12px", colors: ["#304758"] },
     },
     xaxis: {
       categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
+        "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",
       ],
       position: "top",
       axisBorder: { show: false },
@@ -416,10 +407,10 @@ function initChart() {
     yaxis: {
       axisBorder: { show: false },
       axisTicks: { show: false },
-      labels: { show: false, formatter: (v) => v + "%" },
+      labels: { show: false },
     },
     title: {
-      text: "Monthly Inflation in Argentina, 2002",
+    
       floating: true,
       offsetY: 330,
       align: "center",
@@ -436,10 +427,12 @@ function initPerformanceChart() {
 
   el.dataset.rendered = "1";
 
+  // Socrate Tech Institute - Example student performance distribution
+  // Donut chart: Performance levels (term results)
   const options = {
-    series: [44, 55, 41, 17, 15],
+    series: [32, 41, 18, 6, 3],
     chart: { type: "donut", height: 350 },
-    labels: ["Excellent", "Good", "Average", "Below Avg", "Poor"],
+    labels: ["Excellent", "Good", "Average", "Needs Support", "At Risk"],
     responsive: [
       {
         breakpoint: 480,
@@ -450,6 +443,11 @@ function initPerformanceChart() {
       },
     ],
     legend: { position: "right", offsetY: 0, height: 230 },
+    title: {
+      
+      align: "center",
+      style: { color: "#444" },
+    },
   };
 
   new ApexCharts(el, options).render();

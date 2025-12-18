@@ -353,7 +353,7 @@ padding: 0px var(--container-pad) !important;
 background-color: rgb(10, 10, 39);
 padding-bottom: 80px;
 position: relative;
-z-index: 7000;
+z-index: 3000;
 }
 .bg-main-container{
 background-color: rgb(10, 10, 39);
@@ -435,7 +435,6 @@ display: flex;
 justify-content:space-between;
 position: relative;
 z-index: 500;
-
 }
 .hero-right{
 max-width: 50%;
@@ -724,7 +723,6 @@ font-family: var(--font-body);
 
 .testimonials-wrapper h1 {
 text-align: center;
-padding: var(--vertical-spacing) 0;
 }
 .explore-tab-ui h1{
 font-family: var(--font-heading);
@@ -758,7 +756,7 @@ background-color:var(--color-background);
 }
 /* Testimonial Text */
 .testimonial-text {
-  padding: 20px;
+  padding: 0px 20px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -770,8 +768,7 @@ background-color:var(--color-background);
   }
   
   .testimonial-text p {
-  max-width: 230px;
-  line-height: 1.5;
+  max-width: 250px;
   color: #222;
   }
 
@@ -3171,11 +3168,10 @@ font-size: 100px;
 
 .new-hero-button-ui{
 position: absolute;
-width: 250px;
-right:-95px;
+width: 300px;
+right:-90px;
 height: 80px;
 bottom: -22px;
-
 }
 .new-hero-button-ui button{
 height: 100%;

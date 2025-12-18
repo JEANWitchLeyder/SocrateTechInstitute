@@ -13,9 +13,11 @@ $error = '';
      <div class="new-hero-ui-left">
         <h1>Socrate Tech Institute</h1>
      </div>  
+     <!--------
      <div class="new-hero-button-ui">
-     <a href="application.html"><button class="button postuler" type="submit">Postuler</button></a>
+     <a href="admission/application.php"><button class="button postuler" type="submit">Apply</button></a>
      </div>
+     ------>
     </section>
     </section>
     
@@ -50,11 +52,11 @@ $error = '';
       <div class="hero-left">
           <h1>Socrate Tech Institute</h1>
           <div class="subtitled-wrapper">
-              <p class="subtitle1"><span>L’éducation classique</span> et <span>l’innovation au service</span> d’une Haïti nouvelle.</p>
-              <p class="subtitle2">Une école secondaire <span>moderne</span>  qui forme des jeunes citoyens responsables, capables d’ <span>intervenir</span>, de <span>créer</span>, d’ <span>innover</span>  et de <span>comprendre</span> leur pays.</p>
+              <p class="subtitle1"><span>Classical education</span> and <span>innovation serving</span> a new Haiti.</p>
+              <p class="subtitle2">A <span>modern</span> secondary school that trains responsible young citizens, capable of <span>taking action</span>, <span>creating</span>, <span>innovating</span>, and <span>understanding</span> their country.</p>
              <div class="hero-button-wrapper">
-              <a href="application.html"><button class="button postuler" type="submit">Postuler</button></a>
-               <button class="button explorer">Explorer</button>
+              <a href="application.html"><button class="button postuler" type="submit">Apply</button></a>
+               <button class="button explorer">Explore</button>
                
              </div>
           </div>
@@ -72,17 +74,17 @@ $error = '';
  
     <section class="explore-tab-ui">
       <div class="title">
-      <h1>La Vie sur le Campus</h1>
+      <h1>Campus Life</h1>
       </div>
 
       
 
 
   <div class="tabs">
-    <button class="tabs-buttons btn-active" data-tab="1">Infrastructures</button>
-    <button class="tabs-buttons" data-tab="2">Laboratoires</button>
-    <button class="tabs-buttons" data-tab="3">Espaces Sportifs</button>
-    <button class="tabs-buttons" data-tab="4">Gym & Détente</button>
+    <button class="tabs-buttons btn-active" data-tab="1">Facilities</button>
+    <button class="tabs-buttons" data-tab="2">Laboratories</button>
+    <button class="tabs-buttons" data-tab="3">Sports Areas</button>
+    <button class="tabs-buttons" data-tab="4">Gym & Relaxation</button>
   </div>
 
   <div class="tabs-content tabs-content-active campusgrid-container" data-tab="1">
@@ -153,31 +155,31 @@ $error = '';
 </section>
 
         <div class="title">
-        <h1 style="text-align:center;">Pourquoi Nous Choisir ?</h1>
+        <h1 style="text-align:center;">Why Choose Us?</h1>
         </div>
 
       <section class="choose-us-container">
        <div class="grid-element-1">
         <div class="grid-element-title">
-        <h2>Apprentissage Moderne</h2>
+        <h2>Modern Learning</h2>
         </div>
           
        </div>
        <div class="grid-element-2">
         <div class="grid-element-title">
-        <h2>Collaboration & Communauté</h2>
+        <h2>Collaboration & Community</h2>
         </div>
         
        </div>
        <div class="grid-element-3">
         <div class="grid-element-title">
-        <h2>Parcours Personnalisé</h2>
+        <h2>Personalized Pathway</h2>
         </div>
         
        </div>
        <div class="grid-element-4">
         <div class="grid-element-title">
-        <h2>Compétences du Futur</h2> 
+        <h2>Future Skills</h2> 
         </div>
          
        </div>
@@ -185,110 +187,110 @@ $error = '';
 
 <!------
       <section class="why-choose-us">
-        <h1 class="choose-title">Pourquoi Nous Choisir</h1>
+        <h1 class="choose-title">Why Choose Us</h1>
       
         <div class="why-choose-us-element">
           <i class="fas fa-graduation-cap"></i>
           <div class="text-block">
-            <h2>Une éducation tournée vers l’avenir</h2>
-            <p>Nous préparons nos élèves aux défis de demain avec des cours intégrant technologie, pensée critique et créativité.</p>
+            <h2>Education built for the future</h2>
+            <p>We prepare students for tomorrow’s challenges with courses that integrate technology, critical thinking, and creativity.</p>
           </div>
         </div>
       
         <div class="why-choose-us-element">
           <i class="fas fa-user-check"></i>
           <div class="text-block">
-            <h2>Une pédagogie personnalisée</h2>
-            <p>Chaque élève est unique. Nous adaptons notre approche pour encourager autonomie, collaboration et progression individuelle.</p>
+            <h2>A personalized learning approach</h2>
+            <p>Every student is unique. We adapt our approach to encourage independence, collaboration, and individual progress.</p>
           </div>
         </div>
       
         <div class="why-choose-us-element">
           <i class="fas fa-globe"></i>
           <div class="text-block">
-            <h2>Un esprit ouvert sur le monde</h2>
-            <p>Anglais, numérique, culture générale : nos élèves développent les compétences pour évoluer dans un monde globalisé.</p>
+            <h2>An open mindset to the world</h2>
+            <p>English, digital skills, and general culture: our students develop the skills to thrive in a globalized world.</p>
           </div>
         </div>
       
         <div class="why-choose-us-element">
           <i class="fas fa-school"></i>
           <div class="text-block">
-            <h2>Des infrastructures modernes</h2>
-            <p>Nos espaces sont pensés pour favoriser l’apprentissage actif : laboratoires, bibliothèques, espaces de détente, etc.</p>
+            <h2>Modern facilities</h2>
+            <p>Our spaces are designed to support active learning: labs, libraries, relaxation areas, and more.</p>
           </div>
         </div>
       
         <div class="why-choose-us-element">
           <i class="fas fa-rocket"></i>
           <div class="text-block">
-            <h2>Un tremplin vers la réussite</h2>
-            <p>Stages, projets, accompagnement : nous formons des jeunes prêts à s’intégrer dans le monde professionnel et à innover.</p>
+            <h2>A launchpad for success</h2>
+            <p>Internships, projects, and guidance: we train young people who are ready to enter the professional world and innovate.</p>
           </div>
         </div>
       </section>
        
 
       <section class="filieres-wrapper">
-        <h1>Parcours Académiques & Cours Modernes Professionnalisants</h1>
+        <h1>Academic Tracks & Modern Professional Courses</h1>
         <div class="table-container">
           <table class="table">
             <thead>
               <tr>
-                <th>Filière</th>
-                <th>Objectif de la Filière</th>
-                <th>Cours Modernes & Professionnels Associés</th>
+                <th>Track</th>
+                <th>Track Objective</th>
+                <th>Associated Modern & Professional Courses</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td data-label="Filière">Sciences Mathématiques et Physiques (SMP)</td>
-                <td data-label="Objectif de la Filière">
-                  Former des esprits logiques et analytiques capables de résoudre des problèmes complexes dans des domaines scientifiques et technologiques.
+                <td data-label="Track">Mathematics & Physics Sciences (SMP)</td>
+                <td data-label="Track Objective">
+                  Train logical and analytical minds capable of solving complex problems in scientific and technological fields.
                 </td>
-                <td data-label="Cours Modernes & Professionnels Associés">
+                <td data-label="Associated Modern & Professional Courses">
                   <ul>
-                    <li>Programmation Web</li>
-                    <li>Résolution de Problèmes</li>
-                    <li>Intelligence Artificielle</li>
+                    <li>Web Programming</li>
+                    <li>Problem Solving</li>
+                    <li>Artificial Intelligence</li>
                   </ul>
                 </td>
               </tr>
               <tr>
-                <td data-label="Filière">Sciences de la Vie et de la Terre (SVT)</td>
-                <td data-label="Objectif de la Filière">
-                  Développer une compréhension approfondie du vivant et des phénomènes naturels pour préparer à des carrières scientifiques ou médicales.
+                <td data-label="Track">Life & Earth Sciences (SVT)</td>
+                <td data-label="Track Objective">
+                  Develop a deep understanding of living systems and natural phenomena to prepare for scientific or medical careers.
                 </td>
-                <td data-label="Cours Modernes & Professionnels Associés">
+                <td data-label="Associated Modern & Professional Courses">
                   <ul>
-                    <li>Premiers Soins</li>
-                    <li>Introduction à l’Intelligence Artificielle</li>
-                    <li>Compétences Numériques</li>
+                    <li>First Aid</li>
+                    <li>Introduction to Artificial Intelligence</li>
+                    <li>Digital Skills</li>
                   </ul>
                 </td>
               </tr>
               <tr>
-                <td data-label="Filière">Sciences Économiques et Sociales (SES)</td>
-                <td data-label="Objectif de la Filière">
-                  Initier les élèves aux mécanismes économiques, sociaux et politiques pour comprendre et agir dans le monde contemporain.
+                <td data-label="Track">Economic & Social Sciences (SES)</td>
+                <td data-label="Track Objective">
+                  Introduce students to economic, social, and political mechanisms to understand and act in the modern world.
                 </td>
-                <td data-label="Cours Modernes & Professionnels Associés">
+                <td data-label="Associated Modern & Professional Courses">
                   <ul>
-                    <li>Entrepreneuriat</li>
-                    <li>Éducation à la Citoyenneté</li>
-                    <li>Culture Numérique</li>
+                    <li>Entrepreneurship</li>
+                    <li>Civic Education</li>
+                    <li>Digital Culture</li>
                   </ul>
                 </td>
               </tr>
               <tr>
-                <td data-label="Filière">Lettres, Langues et Arts (LLA)</td>
-                <td data-label="Objectif de la Filière">
-                  Cultiver l’expression, l’analyse critique, la créativité et l’ouverture culturelle à travers les langues, la littérature et les arts.
+                <td data-label="Track">Literature, Languages & Arts (LLA)</td>
+                <td data-label="Track Objective">
+                  Cultivate expression, critical analysis, creativity, and cultural openness through languages, literature, and the arts.
                 </td>
-                <td data-label="Cours Modernes & Professionnels Associés">
+                <td data-label="Associated Modern & Professional Courses">
                   <ul>
-                    <li>Éducation à la Citoyenneté & Leadership avec la Réintégration du livre J’aime Haïti</li>
-                    <li>Communication Digitale</li>
+                    <li>Civic Education & Leadership with the reintegration of the book “J’aime Haïti”</li>
+                    <li>Digital Communication</li>
                   </ul>
                 </td>
               </tr>
@@ -297,7 +299,7 @@ $error = '';
         </div>
       </section>
       <div class="comment-postuler-title">
-        <h1>Prêt(e) à Nous Rejoindre ? Voici Comment Faire !</h1>
+        <h1>Ready to Join Us? Here’s How!</h1>
       </div>
    
       <section class="commentpostuler">
@@ -305,35 +307,35 @@ $error = '';
         <div class="commentpostuler-element">
           <div class="check"><i class="fa-solid fa-check"></i></div>
           <span>1</span>
-          <p>Remplir le formulaire d'inscription en ligne</p>
+          <p>Fill out the online registration form</p>
           <div class="line"></div>
         </div>
       
         <div class="commentpostuler-element">
           <div class="check"><i class="fa-solid fa-check"></i></div>
           <span>2</span>
-          <p>Passer les examens d’admission</p>
+          <p>Take the entrance exams</p>
           <div class="line"></div>
         </div>
       
         <div class="commentpostuler-element">
           <div class="check"><i class="fa-solid fa-check"></i></div>
           <span>3</span>
-          <p>Entretien de motivation</p>
+          <p>Motivation interview</p>
           <div class="line"></div>
         </div>
       
         <div class="commentpostuler-element">
           <div class="check"><i class="fa-solid fa-check"></i></div>
           <span>4</span>
-          <p>Soumettre les pièces justificatives</p>
+          <p>Submit required documents</p>
           <div class="line"></div>
         </div>
       
         <div class="commentpostuler-element">
           <div class="check"><i class="fa-solid fa-check"></i></div>
           <span>5</span>
-          <p>Finaliser l'inscription</p>
+          <p>Complete enrollment</p>
         </div>
       </section>
         ------>
@@ -341,10 +343,10 @@ $error = '';
 
       <section class="testimonials-wrapper">
         <div class="title">
-        <h1>Témoignages de Confiance</h1>
+        <h1>Trusted Testimonials</h1>
         </div>
           
-          <p class="testimonial-paragraph">À SocrateTech, chaque voix compte. Découvrez ce que nos élèves et leurs parents pensent de notre approche éducative moderne et humaine. <br>Leurs expériences sont notre plus belle preuve d’impact.</p>
+          <p class="testimonial-paragraph">At SocrateTech, every voice matters. Discover what our students and parents think about our modern and human-centered educational approach. <br>Their experiences are our strongest proof of impact.</p>
         <div class="testimonial-container">
           <div class="testimonial-element">
 
@@ -352,10 +354,10 @@ $error = '';
             <img src="images/testimonial/testimonial1.jpg" alt="">
           </div>
           <div class="testimonial-text">
-            <p><i class="fa-solid fa-quote-left"></i>Ce que j’aime le plus à SocrateTech, c’est la manière dont on apprend. On travaille sur des projets concrets et ça me motive à donner le meilleur de moi-même chaque jour.<i class="fa-solid fa-quote-right"></i></p>
+            <p><i class="fa-solid fa-quote-left"></i>What I love most about SocrateTech is the way we learn. We work on real projects, and it motivates me to give my best every day.<i class="fa-solid fa-quote-right"></i></p>
             <div class="extra-student-info">
               <h2>Lauriane M.</h2>
-            <p>Etudiante en NS2</p>
+            <p>NS2 Student</p>
             </div>
           </div> 
         </div>
@@ -365,10 +367,10 @@ $error = '';
             <img src="images/testimonial/testimonial2.png" alt="">
           </div>
           <div class="testimonial-text">
-            <p><i class="fa-solid fa-quote-left"></i>Grâce aux ateliers pratiques, j’ai pris confiance et appris à mieux collaborer. SocrateTech m’aide à progresser chaque jour dans un environnement stimulant.<i class="fa-solid fa-quote-right"></i></p>
+            <p><i class="fa-solid fa-quote-left"></i>Thanks to the practical workshops, I gained confidence and learned how to collaborate better. SocrateTech helps me improve every day in a motivating environment.<i class="fa-solid fa-quote-right"></i></p>
             <div class="extra-student-info">
               <h2>Naomi B.</h2>
-            <p>Etudiante en NS3</p>
+            <p>NS3 Student</p>
             </div>
           </div> 
          
@@ -381,10 +383,10 @@ $error = '';
             <img src="images/testimonial/testimonial2.png" alt="">
           </div>
           <div class="testimonial-text">
-            <p><i class="fa-solid fa-quote-left"></i>Grâce aux ateliers pratiques, j’ai pris confiance et appris à mieux collaborer. SocrateTech m’aide à progresser chaque jour dans un environnement stimulant.<i class="fa-solid fa-quote-right"></i></p>
+            <p><i class="fa-solid fa-quote-left"></i>Thanks to the practical workshops, I gained confidence and learned how to collaborate better. SocrateTech helps me improve every day in a motivating environment.<i class="fa-solid fa-quote-right"></i></p>
             <div class="extra-student-info">
               <h2>Naomi B.</h2>
-            <p>Etudiante en NS3</p>
+            <p>NS3 Student</p>
             </div>
           </div> 
       </div>
@@ -394,10 +396,10 @@ $error = '';
             <img src="images/testimonial/testimonial3.jpg" alt="">
           </div>
           <div class="testimonial-text">
-            <p><i class="fa-solid fa-quote-left"></i>Grâce aux projets en équipe et aux cours modernes, je découvre chaque jour mes capacités. SocrateTech m’encourage à croire en moi et à viser plus haut.<i class="fa-solid fa-quote-right"></i></p>
+            <p><i class="fa-solid fa-quote-left"></i>Thanks to team projects and modern courses, I discover my potential every day. SocrateTech encourages me to believe in myself and aim higher.<i class="fa-solid fa-quote-right"></i></p>
             <div class="extra-student-info">
               <h2>Sabrina L.</h2>
-            <p>Etudiante en NS1</p>
+            <p>NS1 Student</p>
             </div>
           </div>   
         </div>  
@@ -407,32 +409,32 @@ $error = '';
 <!------------Mega Section Part----------->
 <section class="home-mega-section">
        <div class="title home-mega-main-title">
-       <h1>Education,technologie et Solution réelles</h1> 
+       <h1>Education, Technology, and Real Solutions</h1> 
        </div>
        <section class="technology-section">
          <div class="tech-grid-element">
-         <h2 class="tech-grid-title">Une école pensée pour l'ère numérique</h2>
+         <h2 class="tech-grid-title">A school designed for the digital era</h2>
          </div>
          <div class="title tech-grid-element">
-         <h3 class="tech-grid-title">Site web officiel</h3>
+         <h3 class="tech-grid-title">Official website</h3>
          </div>
          <div class="tech-grid-element">
-         <h3 class="tech-grid-title">Système de gestion</h3>
+         <h3 class="tech-grid-title">Integrated management system</h3>
          </div>
          <div class="tech-grid-element">
-          <h3 class="tech-grid-title">Portails</h3>
+          <h3 class="tech-grid-title">Portals</h3>
          </div>
          <div class="tech-grid-element">           
          </div>      
        </div>
         </section>
         <div class="title">
-       <h1>Payez la scolarité via Moncash</h1> 
+       <h1>Pay tuition via MonCash</h1> 
        </div>
         <section class="moncash-section">
         <div class="moncash-section-element">
          <div class="title">
-            <h2 class="moncash-section-text">Paiment sécurisé via Moncash</h2>
+            <h2 class="moncash-section-text">Secure payment via MonCash</h2>
          </div>
         </div>
         <div class="moncash-section-element">      
@@ -440,7 +442,7 @@ $error = '';
         </section>
         <!------
         <div class="title">
-       <h1>Nos Développeurs</h1> 
+       <h1>Our Developers</h1> 
        </div>
        <div class="basic-info-container ourdevelopers-section"> 
       <div class="tutor-info ourdeveloper">
@@ -450,8 +452,8 @@ $error = '';
         <div class="tutor-info-right ourdeveloper-right">
           <h2>JEAN W. Leyder</h2>
           
-         <h4>Intérêt en Web développement</h4>
-          <strong>Technologies utilisées: HTML,CSS,JS,MySQL,PHP</strong><p></p>
+         <h4>Interest in Web Development</h4>
+          <strong>Technologies used: HTML, CSS, JS, MySQL, PHP</strong><p></p>
           <div class="contact-info">
            <a href=""><i class="fa-brands fa-facebook"></i></a>
             <a href=""><i class="fa-brands fa-square-instagram"></i></a>
@@ -469,8 +471,8 @@ $error = '';
         <div class="tutor-info-right ourdeveloper-right">
           <h2>JEAN W. Leyder</h2>
           
-         <h4>Intérêt en Web développement</h4>
-          <strong>Technologies utilisées: HTML,CSS,JS,MySQL,PHP</strong><p></p>
+         <h4>Interest in Web Development</h4>
+          <strong>Technologies used: HTML, CSS, JS, MySQL, PHP</strong><p></p>
           <div class="contact-info">
            <a href=""><i class="fa-brands fa-facebook"></i></a>
             <a href=""><i class="fa-brands fa-square-instagram"></i></a>
@@ -484,21 +486,12 @@ $error = '';
        
 </section>
 </section>
-
-
-
-
-
-
-
-
-
       <section class="ourpartners-wrapper">
         <div class="title">
-        <h1>Un Réseau Solide de Partenaires</h1>
+        <h1>A Strong Network of Partners</h1>
         </div>
         
-        <p>SocrateTech Institute est fier de collaborer avec des institutions prestigieuses qui partagent notre vision d’une éducation moderne, inclusive et tournée vers l’avenir. Ces partenariats renforcent notre impact sur la jeunesse haïtienne et soutiennent notre engagement à offrir une formation de qualité, ancrée dans les besoins du monde professionnel et de la société.</p>
+        <p>SocrateTech Institute is proud to collaborate with prestigious institutions that share our vision of modern, inclusive, and future-oriented education. These partnerships strengthen our impact on Haitian youth and support our commitment to providing high-quality training grounded in the needs of the professional world and society.</p>
         <div class="ourpartners-container">
           <figure class="ourpartners-element"><img src="images/testimonial/codingnobg.png" alt=""></figure>
           <figure class="ourpartners-element"><img src="images/testimonial/sogebanknobg.png" alt=""></figure>
@@ -511,14 +504,6 @@ $error = '';
                     
         </div>
       </section>
-
-
-
-
-
-
-
-
       <section class="chatbot-main-container">
     <div id="chat-bubble">
       <img src="images/bot.png" alt="Chatbot" id="bot-icon">
@@ -565,7 +550,7 @@ $error = '';
     <section class="footer-wrapper">
     <footer class="footer">
       <section class="footer-top">
-        <h1>Connectés pour Inspirer et Éduquer</h1>
+        <h1>Connected to Inspire and Educate</h1>
           <div class="logo-container">
             <a href="index.html"><img src="images/logowhite.png" alt=""></a>
           </div>
@@ -581,35 +566,35 @@ $error = '';
       <section class="footer-body">
         <div class="links-container">
           <div class="title">
-          <h2>Accueil</h2>
+          <h2>Home</h2>
           </div>
         
-          <a href="">Présentation</a>
-          <a href="">Pourquoi SocrateTech ?</a>
-          <a href="">Témoignages</a>
-          <a href="">Nos Partenaires</a>
+          <a href="">Overview</a>
+          <a href="">Why SocrateTech?</a>
+          <a href="">Testimonials</a>
+          <a href="">Our Partners</a>
         </div>
 
         <div class="links-container">
         <div class="title">
-        <h2>Classes & Cours</h2>
+        <h2>Classes & Courses</h2>
           </div>
           
-          <a href="">Filières Académiques</a>
-          <a href="">Cours Modernes</a>
-          <a href="">Agriculture & IA</a>
-          <a href="">Cours d’Été / Club</a>
+          <a href="">Academic Tracks</a>
+          <a href="">Modern Courses</a>
+          <a href="">Agriculture & AI</a>
+          <a href="">Summer Courses / Club</a>
         
         </div>
         <div class="links-container">
           <div class="title">
-          <h2>Inscription</h2>
+          <h2>Enrollment</h2>
           </div>
           
-          <a href="">Comment s’inscrire ?</a>
-          <a href="">Examens d’entrée</a>
-          <a href="">Documents requis</a>
-          <a href="">Aide financière</a>
+          <a href="">How to enroll?</a>
+          <a href="">Entrance exams</a>
+          <a href="">Required documents</a>
+          <a href="">Financial aid</a>
         </div>
      
         <div class="links-container">
@@ -618,18 +603,18 @@ $error = '';
           </div> 
           
           <div class="links-container-contact"> 
-            <a href="">Carrefour, Haïti</a></div>
+            <a href="">Carrefour, Haiti</a></div>
           <div class="links-container-contact">
             <a href="">+509 45 67 89 00</a></div>
           <div class="links-container-contact">
             <a href="">info@socratetech.edu.ht</a></div>
           <div class="links-container-contact">
-            <a href="">Lun-Ven, 8h - 16h</a></div>
+            <a href="">Mon–Fri, 8 AM – 4 PM</a></div>
              
         </div>
       </section>
       <section class="footer-end">
-        <p><i class="fa-regular fa-copyright"></i> 2025 SocrateTech Institute. Tous droits réservés.</p>
+        <p><i class="fa-regular fa-copyright"></i> 2025 SocrateTech Institute. All rights reserved.</p>
         
       </section>
     </footer>
