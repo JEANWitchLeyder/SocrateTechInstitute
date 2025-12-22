@@ -1,4 +1,4 @@
-.choose-us-container{
+/*.choose-us-container{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     width: 100%;
@@ -28,6 +28,7 @@
 
 
     /*Mega Section CSSS*/
+    /*
     .home-mega-section{
         width: 100%;
         background-color:rgb(10, 10, 39);
@@ -118,7 +119,7 @@
         grid-column: span 4;
         grid-row: span 3;
         background-color:aqua;
-        background: url(../images/hero-image.png);
+        background: url(/images/hero-image.png);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -141,7 +142,7 @@
       .moncash-section-element:nth-child(2){
         grid-column:span 3;
         grid-row: span 2;
-        background: url(../images/moncash.png);
+        background: url(/images/moncash.png);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -229,4 +230,4 @@
        text-decoration: none;
       }
 
-     
+     */
