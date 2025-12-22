@@ -89,46 +89,46 @@ $error = '';
 
   <div class="tabs-content tabs-content-active campusgrid-container" data-tab="1">
   <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/batimentacademique.jpg" alt="">
+  <img src="/images/tabUIImages/building/batimentacademique.jpg" alt="">
   </div>
   <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/library2.jpg" alt="">
+  <img src="/images/tabUIImages/building/library2.jpg" alt="">
   </div>
   <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/salled'etude.jpg" alt="">
+  <img src="/images/tabUIImages/building/salled'etude.jpg" alt="">
   </div>
   <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/building2.jpg" alt="">
+  <img src="/images/tabUIImages/building/building2.jpg" alt="">
   </div>
   </div>
 
   <div class="tabs-content campusgrid-container" data-tab="2">
   <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/classroom1.jpg" alt="">
+  <img src="/images/tabUIImages/building/classroom1.jpg" alt="">
   </div>
   <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/salled'etude.jpg" alt="">
+  <img src="/images/tabUIImages/building/salled'etude.jpg" alt="">
  </div>
  <div class="campus-grid-item">
- <img src="images/tabUIImages/building/salledediscussion.jpg" alt="">
+ <img src="/images/tabUIImages/building/salledediscussion.jpg" alt="">
  </div>
  <div class="campus-grid-item">
- <img src="images/tabUIImages/building/salledeconference.jpg" alt="">
+ <img src="/images/tabUIImages/building/salledeconference.jpg" alt="">
  </div>
   </div>
 
   <div class="tabs-content campusgrid-container" data-tab="3">
   <div class="campus-grid-item">
-  <img src="images/tabUIImages/sport/terrainfootball.jpg" alt="">
+  <img src="/images/tabUIImages/sport/terrainfootball.jpg" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="images/tabUIImages/sport/terrainfutsal.jpg" alt="">
+<img src="/images/tabUIImages/sport/terrainfutsal.jpg" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="images/tabUIImages/sport/terrainvolleyball.png" alt="">
+<img src="/images/tabUIImages/sport/terrainvolleyball.png" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="images/tabUIImages/sport/terrainbasket.webp" alt="">
+<img src="/images/tabUIImages/sport/terrainbasket.webp" alt="">
 </div>
 
   
@@ -139,16 +139,16 @@ $error = '';
 
   <div class="tabs-content campusgrid-container" data-tab="4">
   <div class="campus-grid-item">
-  <img src="images/tabUIImages/sport/gym.jpg" alt="">
+  <img src="/images/tabUIImages/sport/gym.jpg" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="images/tabUIImages/sport/parcdedetente.jpg" alt="">
+<img src="/images/tabUIImages/sport/parcdedetente.jpg" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="images/tabUIImages/sport/espaceconcert.jpg" alt="">
+<img src="/images/tabUIImages/sport/espaceconcert.jpg" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="images/tabUIImages/building/library2.jpg" alt="">
+<img src="/images/tabUIImages/building/library2.jpg" alt="">
 </div>
 
   </div>
@@ -351,7 +351,7 @@ $error = '';
           <div class="testimonial-element">
 
           <div class="testimonial-top">     
-            <img src="images/testimonial/testimonial1.jpg" alt="">
+            <img src="/images/testimonial/testimonial1.jpg" alt="">
           </div>
           <div class="testimonial-text">
             <p><i class="fa-solid fa-quote-left"></i>What I love most about SocrateTech is the way we learn. We work on real projects, and it motivates me to give my best every day.<i class="fa-solid fa-quote-right"></i></p>
@@ -364,7 +364,7 @@ $error = '';
         <div class="testimonial-element">
 
           <div class="testimonial-top">     
-            <img src="images/testimonial/testimonial2.png" alt="">
+            <img src="/images/testimonial/testimonial2.png" alt="">
           </div>
           <div class="testimonial-text">
             <p><i class="fa-solid fa-quote-left"></i>Thanks to the practical workshops, I gained confidence and learned how to collaborate better. SocrateTech helps me improve every day in a motivating environment.<i class="fa-solid fa-quote-right"></i></p>
@@ -380,7 +380,7 @@ $error = '';
         <div class="testimonial-element">
 
           <div class="testimonial-top">     
-            <img src="images/testimonial/testimonial2.png" alt="">
+            <img src="/images/testimonial/testimonial2.png" alt="">
           </div>
           <div class="testimonial-text">
             <p><i class="fa-solid fa-quote-left"></i>Thanks to the practical workshops, I gained confidence and learned how to collaborate better. SocrateTech helps me improve every day in a motivating environment.<i class="fa-solid fa-quote-right"></i></p>
@@ -393,7 +393,7 @@ $error = '';
         <div class="testimonial-element">
 
           <div class="testimonial-top">     
-            <img src="images/testimonial/testimonial3.jpg" alt="">
+            <img src="/images/testimonial/testimonial3.jpg" alt="">
           </div>
           <div class="testimonial-text">
             <p><i class="fa-solid fa-quote-left"></i>Thanks to team projects and modern courses, I discover my potential every day. SocrateTech encourages me to believe in myself and aim higher.<i class="fa-solid fa-quote-right"></i></p>
@@ -447,7 +447,7 @@ $error = '';
        <div class="basic-info-container ourdevelopers-section"> 
       <div class="tutor-info ourdeveloper">
         <div class="tutor-info-left ourdeveloper-left">
-          <img src="images/0016_3.JPG" alt="">
+          <img src="/images/0016_3.JPG" alt="">
         </div>
         <div class="tutor-info-right ourdeveloper-right">
           <h2>JEAN W. Leyder</h2>
@@ -466,7 +466,7 @@ $error = '';
 
        <div class="tutor-info ourdeveloper">
         <div class="tutor-info-left ourdeveloper-left">
-          <img src="images/0016_3.JPG" alt="">
+          <img src="/images/0016_3.JPG" alt="">
         </div>
         <div class="tutor-info-right ourdeveloper-right">
           <h2>JEAN W. Leyder</h2>
@@ -493,25 +493,25 @@ $error = '';
         
         <p>SocrateTech Institute is proud to collaborate with prestigious institutions that share our vision of modern, inclusive, and future-oriented education. These partnerships strengthen our impact on Haitian youth and support our commitment to providing high-quality training grounded in the needs of the professional world and society.</p>
         <div class="ourpartners-container">
-          <figure class="ourpartners-element"><img src="images/testimonial/codingnobg.png" alt=""></figure>
-          <figure class="ourpartners-element"><img src="images/testimonial/sogebanknobg.png" alt=""></figure>
-          <figure class="ourpartners-element"><img src="images/testimonial/digicelnobg.png" alt=""></figure>
-          <figure class="ourpartners-element"> <img src="images/testimonial/henridesnobg.png" alt=""></figure>
-          <figure class="ourpartners-element"><img src="images/testimonial/fokalnobg.png" alt=""></figure>
-          <figure class="ourpartners-element"><img src="images/testimonial/brananobg.png" alt=""></figure>
-          <figure class="ourpartners-element"><img src="images/testimonial/menfpnobg.png" alt=""></figure>
-          <figure class="ourpartners-element"><img src="images/testimonial/bnhnobg.png" alt=""> </figure>
+          <figure class="ourpartners-element"><img src="/images/testimonial/codingnobg.png" alt=""></figure>
+          <figure class="ourpartners-element"><img src="/images/testimonial/sogebanknobg.png" alt=""></figure>
+          <figure class="ourpartners-element"><img src="/images/testimonial/digicelnobg.png" alt=""></figure>
+          <figure class="ourpartners-element"> <img src="/images/testimonial/henridesnobg.png" alt=""></figure>
+          <figure class="ourpartners-element"><img src="/images/testimonial/fokalnobg.png" alt=""></figure>
+          <figure class="ourpartners-element"><img src="/images/testimonial/brananobg.png" alt=""></figure>
+          <figure class="ourpartners-element"><img src="/images/testimonial/menfpnobg.png" alt=""></figure>
+          <figure class="ourpartners-element"><img src="/images/testimonial/bnhnobg.png" alt=""> </figure>
                     
         </div>
       </section>
       <section class="chatbot-main-container">
     <div id="chat-bubble">
-      <img src="images/bot.png" alt="Chatbot" id="bot-icon">
+      <img src="/images/bot.png" alt="Chatbot" id="bot-icon">
    </div>
  
    <div id="chat-window">
      <div id="top-chat-window"> 
-       <img src="images/bot.png" alt="Chatbot" id="bot-icon-top">
+       <img src="/images/bot.png" alt="Chatbot" id="bot-icon-top">
        <h2>AI Assistant</h2>
        
      </div>
@@ -552,7 +552,7 @@ $error = '';
       <section class="footer-top">
         <h1>Connected to Inspire and Educate</h1>
           <div class="logo-container">
-            <a href="index.html"><img src="images/logowhite.png" alt=""></a>
+            <a href="index.html"><img src="/images/logowhite.png" alt=""></a>
           </div>
           <div class="social-media-container">
             <a href=""><i class="fa-brands fa-facebook"></i></a>
