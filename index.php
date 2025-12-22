@@ -89,46 +89,46 @@ $error = '';
 
   <div class="tabs-content tabs-content-active campusgrid-container" data-tab="1">
   <div class="campus-grid-item">
-  <img src="/images/tabUIImages/building/batimentacademique.jpg" alt="">
+  <img src="images/tabUIImages/building/batimentacademique.jpg" alt="">
   </div>
   <div class="campus-grid-item">
-  <img src="/images/tabUIImages/building/library2.jpg" alt="">
+  <img src="images/tabUIImages/building/library2.jpg" alt="">
   </div>
   <div class="campus-grid-item">
-  <img src="/images/tabUIImages/building/salled'etude.jpg" alt="">
+  <img src="images/tabUIImages/building/salled'etude.jpg" alt="">
   </div>
   <div class="campus-grid-item">
-  <img src="/images/tabUIImages/building/building2.jpg" alt="">
+  <img src="images/tabUIImages/building/building2.jpg" alt="">
   </div>
   </div>
 
   <div class="tabs-content campusgrid-container" data-tab="2">
   <div class="campus-grid-item">
-  <img src="/images/tabUIImages/building/classroom1.jpg" alt="">
+  <img src="images/tabUIImages/building/classroom1.jpg" alt="">
   </div>
   <div class="campus-grid-item">
-  <img src="/images/tabUIImages/building/salled'etude.jpg" alt="">
+  <img src="images/tabUIImages/building/salled'etude.jpg" alt="">
  </div>
  <div class="campus-grid-item">
- <img src="/images/tabUIImages/building/salledediscussion.jpg" alt="">
+ <img src="images/tabUIImages/building/salledediscussion.jpg" alt="">
  </div>
  <div class="campus-grid-item">
- <img src="/images/tabUIImages/building/salledeconference.jpg" alt="">
+ <img src="images/tabUIImages/building/salledeconference.jpg" alt="">
  </div>
   </div>
 
   <div class="tabs-content campusgrid-container" data-tab="3">
   <div class="campus-grid-item">
-  <img src="/images/tabUIImages/sport/terrainfootball.jpg" alt="">
+  <img src="images/tabUIImages/sport/terrainfootball.jpg" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="/images/tabUIImages/sport/terrainfutsal.jpg" alt="">
+<img src="images/tabUIImages/sport/terrainfutsal.jpg" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="/images/tabUIImages/sport/terrainvolleyball.png" alt="">
+<img src="images/tabUIImages/sport/terrainvolleyball.png" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="/images/tabUIImages/sport/terrainbasket.webp" alt="">
+<img src="images/tabUIImages/sport/terrainbasket.webp" alt="">
 </div>
 
   
@@ -139,16 +139,16 @@ $error = '';
 
   <div class="tabs-content campusgrid-container" data-tab="4">
   <div class="campus-grid-item">
-  <img src="/images/tabUIImages/sport/gym.jpg" alt="">
+  <img src="images/tabUIImages/sport/gym.jpg" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="/images/tabUIImages/sport/parcdedetente.jpg" alt="">
+<img src="images/tabUIImages/sport/parcdedetente.jpg" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="/images/tabUIImages/sport/espaceconcert.jpg" alt="">
+<img src="images/tabUIImages/sport/espaceconcert.jpg" alt="">
 </div>
 <div class="campus-grid-item">
-<img src="/images/tabUIImages/building/library2.jpg" alt="">
+<img src="images/tabUIImages/building/library2.jpg" alt="">
 </div>
 
   </div>
