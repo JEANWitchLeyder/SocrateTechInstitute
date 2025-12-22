@@ -3060,7 +3060,7 @@ border-radius: 20px;
 grid-row: span 2;
 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 background-color: white;
-background: url(/images/choose-us/modernlearning.jpg);
+background: url('/images/choose-us/modernlearning.jpg');
 background-position:center;
 background-size:cover;
 position: relative;
@@ -3074,7 +3074,7 @@ border-radius: 20px;
 
 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 background-color: white;
-background: url(/images/choose-us/community.jpg);
+background: url('/images/choose-us/community.jpg');
 background-position:center;
 background-size:cover;
 position: relative;
@@ -3087,7 +3087,7 @@ border-radius: 20px;
 
 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 background-color: white;
-background:url(../images/choose-us/path.jpg);
+background:url('/images/choose-us/path.jpg');
 background-position:center;
 background-size:cover;
 position: relative;
@@ -3103,7 +3103,7 @@ position: relative;
 content:'';
 display: flex;
 justify-content: center;
-background:url(/images/choose-us/tech.jpg);
+background:url('/images/choose-us/tech.jpg');
 background-position:center;
 background-size:cover;
 }
@@ -3297,7 +3297,7 @@ margin-bottom:-5px!important;
       border-radius: 25px;
     }
     .tech-grid-element:nth-child(1){
-      background:url(/images/techenvironment.jpg);
+      background:url('/images/techenvironment.jpg');
       grid-column: span 3;
       grid-row: span 2;
       background-position: center;
@@ -3333,7 +3333,7 @@ margin-bottom:-5px!important;
       grid-column: span 4;
       grid-row: span 3;
       background-color:aqua;
-      background: url(/images/hero-image.png);
+      background: url('/images/hero-image.png');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -3350,7 +3350,7 @@ margin-bottom:-5px!important;
     .moncash-section-element:nth-child(1){
        grid-column:span 4;
        grid-row: span 3;
-       background:url(/images/online-payment.png);
+       background:url('/images/online-payment.png');
        background-position: center;
        background-repeat: no-repeat;
        background-size: cover;
@@ -3363,7 +3363,7 @@ margin-bottom:-5px!important;
     .moncash-section-element:nth-child(2){
       grid-column:span 3;
       grid-row: span 3;
-      background: url(/images/moncash.png);
+      background: url('/images/moncash.png');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -3930,7 +3930,7 @@ font-size: 70px;
       border-radius: 25px;
     }
     .tech-grid-element:nth-child(1){
-      background:url(/images/techenvironment.jpg);
+      background:url('/images/techenvironment.jpg');
       grid-column: span 3;
       grid-row: span 5;
       background-position: center;
@@ -3943,7 +3943,7 @@ font-size: 70px;
       grid-column: span 4;
       grid-row: span 5;
       
-      background: url(/images/hero-image.png);
+      background: url('/images/hero-image.png');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -4220,7 +4220,7 @@ font-size: 70px;
       border-radius: 25px;
     }
     .tech-grid-element:nth-child(1){
-      background:url(/images/techenvironment.jpg);
+      background:url('/images/techenvironment.jpg');
       grid-column: span 3;
       grid-row: span 5;
       background-position: center;
@@ -4233,7 +4233,7 @@ font-size: 70px;
       grid-column: span 4;
       grid-row: span 5;
       
-      background: url(/images/hero-image.png);
+      background: url('/images/hero-image.png');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
