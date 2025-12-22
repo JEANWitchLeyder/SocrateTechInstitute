@@ -1,5 +1,6 @@
 <?php
 session_start();
+define('BASE_URL', '/');
 include 'database/database.php';
 include 'partials/functions.php'; 
 include 'partials/header.php';
@@ -80,79 +81,72 @@ $error = '';
       
 
 
-  <div class="tabs">
-    <button class="tabs-buttons btn-active" data-tab="1">Facilities</button>
-    <button class="tabs-buttons" data-tab="2">Laboratories</button>
-    <button class="tabs-buttons" data-tab="3">Sports Areas</button>
-    <button class="tabs-buttons" data-tab="4">Gym & Relaxation</button>
-  </div>
-
-  <div class="tabs-content tabs-content-active campusgrid-container" data-tab="1">
-  <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/batimentacademique.jpg" alt="">
-  </div>
-  <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/library2.jpg" alt="">
-  </div>
-  <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/salled'etude.jpg" alt="">
-  </div>
-  <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/building2.jpg" alt="">
-  </div>
-  </div>
-
-  <div class="tabs-content campusgrid-container" data-tab="2">
-  <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/classroom1.jpg" alt="">
-  </div>
-  <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/salled'etude.jpg" alt="">
- </div>
- <div class="campus-grid-item">
- <img src="images/tabUIImages/building/salledediscussion.jpg" alt="">
- </div>
- <div class="campus-grid-item">
- <img src="images/tabUIImages/building/salledeconference.jpg" alt="">
- </div>
-  </div>
-
-  <div class="tabs-content campusgrid-container" data-tab="3">
-  <div class="campus-grid-item">
-  <img src="images/tabUIImages/sport/terrainfootball.jpg" alt="">
-</div>
-<div class="campus-grid-item">
-<img src="images/tabUIImages/sport/terrainfutsal.jpg" alt="">
-</div>
-<div class="campus-grid-item">
-<img src="images/tabUIImages/sport/terrainvolleyball.png" alt="">
-</div>
-<div class="campus-grid-item">
-<img src="images/tabUIImages/sport/terrainbasket.webp" alt="">
+      <div class="tabs">
+  <button class="tabs-buttons btn-active" data-tab="1">Facilities</button>
+  <button class="tabs-buttons" data-tab="2">Laboratories</button>
+  <button class="tabs-buttons" data-tab="3">Sports Areas</button>
+  <button class="tabs-buttons" data-tab="4">Gym & Relaxation</button>
 </div>
 
-  
-
-
-
-  </div>
-
-  <div class="tabs-content campusgrid-container" data-tab="4">
+<div class="tabs-content tabs-content-active campusgrid-container" data-tab="1">
   <div class="campus-grid-item">
-  <img src="images/tabUIImages/sport/gym.jpg" alt="">
-</div>
-<div class="campus-grid-item">
-<img src="images/tabUIImages/sport/parcdedetente.jpg" alt="">
-</div>
-<div class="campus-grid-item">
-<img src="images/tabUIImages/sport/espaceconcert.jpg" alt="">
-</div>
-<div class="campus-grid-item">
-<img src="images/tabUIImages/building/library2.jpg" alt="">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/building/batimentacademique.jpg" alt="">
+  </div>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/building/library2.jpg" alt="">
+  </div>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/building/salle_etude.jpg" alt="">
+  </div>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/building/building2.jpg" alt="">
+  </div>
 </div>
 
+<div class="tabs-content campusgrid-container" data-tab="2">
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/building/classroom1.jpg" alt="">
   </div>
-</section>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/building/salle_etude.jpg" alt="">
+  </div>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/building/salledediscussion.jpg" alt="">
+  </div>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/building/salledeconference.jpg" alt="">
+  </div>
+</div>
+
+<div class="tabs-content campusgrid-container" data-tab="3">
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/sport/terrainfootball.jpg" alt="">
+  </div>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/sport/terrainfutsal.jpg" alt="">
+  </div>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/sport/terrainvolleyball.png" alt="">
+  </div>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/sport/terrainbasket.webp" alt="">
+  </div>
+</div>
+
+<div class="tabs-content campusgrid-container" data-tab="4">
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/sport/gym.jpg" alt="">
+  </div>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/sport/parcdedetente.jpg" alt="">
+  </div>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/sport/espaceconcert.jpg" alt="">
+  </div>
+  <div class="campus-grid-item">
+    <img src="<?= $BASE_URL ?>images/tabUIImages/building/library2.jpg" alt="">
+  </div>
+</div>
 
         <div class="title">
         <h1 style="text-align:center;">Why Choose Us?</h1>
