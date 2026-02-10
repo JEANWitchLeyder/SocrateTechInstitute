@@ -1,11 +1,11 @@
 <?php 
-require_once __DIR__ . '/header.php';
+require_once __DIR__ . '/src/Core/partials/header.php';
 ?>
 
 <header class="header-container">
     <div class="hamburger-menu-container">
         <div class="hamburger-menu">
-            
+                 
         </div>
     </div>
 
@@ -29,8 +29,8 @@ require_once __DIR__ . '/header.php';
         </div>
 
         <div class="nav-right">
-            <a href="authentification/register.php" class="contact button register-btn">Enregistrer</a>
-            <a href="authentification/login.php" class="connexion button connexion-btn">Connexion</a>
+            <a href="/src/authentication/register.php" class="contact button register-btn">Enregistrer</a>
+            <a href="/src/authentication/login.php" class="connexion button connexion-btn">Connexion</a>
         </div>
     </nav>
 </header>

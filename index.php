@@ -5,10 +5,17 @@ require_once __DIR__ . '/bootstrap/init.php';
 
 require_once __DIR__ . '/src/Core/partials/header.php';
 
+require_once __DIR__ . '/src/Core/database/Database.php';
+
+
 $error = '';
+
+
+
 ?>
 
     <?php  require_once __DIR__ .  '/src/Core/partials/linkheader.php';?>
+
     <section class="new-hero-ui-wrapper">
     <section class="new-hero-ui">
      <div class="new-hero-ui-left">
@@ -80,18 +87,20 @@ $error = '';
       </div>
 
     
-  <div class="tabs">
+   <div class="tabs">
     <button class="tabs-buttons btn-active" data-tab="1">Facilities</button>
     <button class="tabs-buttons" data-tab="2">Laboratories</button>
     <button class="tabs-buttons" data-tab="3">Sports Areas</button>
     <button class="tabs-buttons" data-tab="4">Gym & Relaxation</button>
   </div>
 
-  <div class="tabs-content tabs-content-active campusgrid-container" data-tab="1">
-  <div class="campus-grid-item">
-  <img src="images/tabUIImages/building/batimentacademique.jpg" alt="">
-  </div>
-  <div class="campus-grid-item">
+   <div class="tabs-content tabs-content-active campusgrid-container" data-tab="1">
+   <div class="campus-grid-item">
+   <img src="images/tabUIImages/building/batimentacademique.jpg" alt="">
+   </div>
+  
+  
+    <div class="campus-grid-item">
   <img src="images/tabUIImages/building/library2.jpg" alt="">
   </div>
   <div class="campus-grid-item">
