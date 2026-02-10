@@ -1,5 +1,6 @@
-<?php 
-require_once __DIR__ . '/src/Core/partials/header.php';
+<?php
+require_once __DIR__ . '/header.php';
+
 ?>
 
 <header class="header-container">
@@ -26,7 +27,7 @@ require_once __DIR__ . '/src/Core/partials/header.php';
             <a class="about" href="about.php">À Propos</a>
             <a href="admission/application.php"><button class="button postuler" type="submit">Apply</button></a>
             <a class="" href="admission/application.php">Inscription</a>
-        </div>
+        </div>  
 
         <div class="nav-right">
             <a href="/src/authentication/register.php" class="contact button register-btn">Enregistrer</a>
