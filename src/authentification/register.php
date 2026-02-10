@@ -2,7 +2,7 @@
 session_start();
 
 require_once __DIR__ . '/../database/database.php';
-require_once __DIR__ . '/../partials/functions.php';
+require_once __DIR__ . '/../Core/functions.php';
 require_once __DIR__ . '/../partials/linkheader.php';
 
 if (is_user_logged_in()) {

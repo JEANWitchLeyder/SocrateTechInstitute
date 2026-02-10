@@ -1,13 +1,14 @@
 <?php
 session_start();
-include 'database/database.php';
-include 'partials/functions.php'; 
-include 'partials/header.php';
+
+require_once __DIR__ . '/bootstrap/init.php';
+
+require_once __DIR__ . '/src/Core/partials/header.php';
 
 $error = '';
 ?>
 
-    <?php  include 'partials/linkheader.php';?>
+    <?php  require_once __DIR__ .  '/src/Core/partials/linkheader.php';?>
     <section class="new-hero-ui-wrapper">
     <section class="new-hero-ui">
      <div class="new-hero-ui-left">
@@ -440,49 +441,7 @@ $error = '';
         <div class="moncash-section-element">      
         </div>    
         </section>
-        <!------
-        <div class="title">
-       <h1>Our Developers</h1> 
-       </div>
-       <div class="basic-info-container ourdevelopers-section"> 
-      <div class="tutor-info ourdeveloper">
-        <div class="tutor-info-left ourdeveloper-left">
-          <img src="images/0016_3.JPG" alt="">
-        </div>
-        <div class="tutor-info-right ourdeveloper-right">
-          <h2>JEAN W. Leyder</h2>
-          
-         <h4>Interest in Web Development</h4>
-          <strong>Technologies used: HTML, CSS, JS, MySQL, PHP</strong><p></p>
-          <div class="contact-info">
-           <a href=""><i class="fa-brands fa-facebook"></i></a>
-            <a href=""><i class="fa-brands fa-square-instagram"></i></a>
-            <a href=""><i class="fa-solid fa-envelope"></i></a>
-            <a href=""><i class="fa-brands fa-whatsapp"></i></a>
-            <a href=""><i class="fa-brands fa-linkedin"></i></a>
-          </div>       
-        </div>
-       </div>
-
-       <div class="tutor-info ourdeveloper">
-        <div class="tutor-info-left ourdeveloper-left">
-          <img src="images/0016_3.JPG" alt="">
-        </div>
-        <div class="tutor-info-right ourdeveloper-right">
-          <h2>JEAN W. Leyder</h2>
-          
-         <h4>Interest in Web Development</h4>
-          <strong>Technologies used: HTML, CSS, JS, MySQL, PHP</strong><p></p>
-          <div class="contact-info">
-           <a href=""><i class="fa-brands fa-facebook"></i></a>
-            <a href=""><i class="fa-brands fa-square-instagram"></i></a>
-            <a href=""><i class="fa-solid fa-envelope"></i></a>
-            <a href=""><i class="fa-brands fa-whatsapp"></i></a>
-            <a href=""><i class="fa-brands fa-linkedin"></i></a>
-          </div>       
-        </div>
-       </div>
-       ------->
+        
        
 </section>
 </section>
@@ -664,4 +623,4 @@ document.addEventListener("DOMContentLoaded", () => {
 <script src="chatbot_folder/scriptChat.js"></script>
 <script src="server.js"> </script>
 
-<?php include 'partials/footer.php'?>
+<?php require_once __DIR__ .  '/src/Core/partials/footer.php'; ?>
