@@ -14,19 +14,20 @@ $error = '';
      <div class="new-hero-ui-left">
         <h1>Socrate Tech Institute</h1>
      </div>  
-     <!--------
-     <div class="new-hero-button-ui">
-     <a href="admission/application.php"><button class="button postuler" type="submit">Apply</button></a>
-     </div>
-     ------>
-    </section>
-    </section>
+      <!--------
+      <div class="new-hero-button-ui">
+      <a href="admission/application.php"><button class="button postuler" type="submit">Apply</button></a>
+      </div>
+      ------>
+      </section>
+      </section>
+
     
     
-    <!-----
-    <section class="bg-main-container">
-    <section class="hero">
-      <div class="icon-background">
+       <!-----
+       <section class="bg-main-container">
+       <section class="hero">
+       <div class="icon-background">
         <i class="fas fa-code"></i>
         <i class="fas fa-dna"></i>
         <i class="fas fa-brain"></i>
@@ -78,9 +79,7 @@ $error = '';
       <h1>Campus Life</h1>
       </div>
 
-      
-
-
+    
   <div class="tabs">
     <button class="tabs-buttons btn-active" data-tab="1">Facilities</button>
     <button class="tabs-buttons" data-tab="2">Laboratories</button>
