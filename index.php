@@ -519,7 +519,7 @@ $error = '';
       <section class="footer-top">
         <h1>Connected to Inspire and Educate</h1>
           <div class="logo-container">
-            <a href="index.html"><img src="images/logowhite.png" alt=""></a>
+            <a href="index.html"><img src="assets/images/others/logowhite.png" alt=""></a>
           </div>
           <div class="social-media-container">
             <a href=""><i class="fa-brands fa-facebook"></i></a>

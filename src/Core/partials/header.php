@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socrate Tech Institute | STI</title>
 
-    <link rel="stylesheet" href="assets/css/design.css?v=44">
-    <link rel="stylesheet" href="assets/css/design2.css?v=44">
+    <link rel="stylesheet" href="/../Socrate Tech Intitute Project/assets/css/design.css?v=45">
+    <link rel="stylesheet" href="/../Socrate Tech Intitute Project/assets/css/design2.css?v=45">
     <!--------
     <link rel="stylesheet" href="design/design2.css?v=40">
     ------->

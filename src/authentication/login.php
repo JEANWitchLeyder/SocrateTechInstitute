@@ -1,8 +1,27 @@
 <?php
 session_start();
-require_once __DIR__ . '/../database/database.php';
-require_once __DIR__ . '/../partials/functions.php';
-require_once __DIR__ . '/../partials/linkheader.php';
+
+require_once __DIR__ . '/../../bootstrap/init.php';
+
+require_once __DIR__ . '/../Core/partials/linkheader.php';
+
+require_once __DIR__ . '/../Core/partials/header.php';
+
+require_once __DIR__ . '/../Core/helpers.php';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* 
@@ -12,6 +31,7 @@ if(is_user_logged_in()){
 
 
 */
+/*
   $username = $email = $password = $password_confirm = $role = "";
   $error = "";
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -61,12 +81,18 @@ if(is_user_logged_in()){
       mysqli_stmt_close($stmt);
     }
   }
+
+
+  */
 ?>
+
 
 <div class="login-container-overlay-bg">
     <div class="login-container">
       <div class="regislog-left">
-        <a href="index.html"><img src="images/logowhite.png" alt=""></a>
+      <a href="index.html">
+                <img src="assets/images/others/logowhite.png" alt="Socrate Tech Institute">
+            </a>
         <h1>Login</h1>
       </div>
       <div class="regislog-right">

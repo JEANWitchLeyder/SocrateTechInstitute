@@ -17,7 +17,7 @@ require_once __DIR__ . '/header.php';
 
         <div class="nav-left">
             <a href="index.html">
-                <img src="images/logowhite.png" alt="Socrate Tech Institute">
+                <img src="assets/images/others/logowhite.png" alt="Socrate Tech Institute">
             </a>
         </div>
 
@@ -30,8 +30,8 @@ require_once __DIR__ . '/header.php';
         </div>  
 
         <div class="nav-right">
-            <a href="/src/authentication/register.php" class="contact button register-btn">Enregistrer</a>
-            <a href="/src/authentication/login.php" class="connexion button connexion-btn">Connexion</a>
+            <a href="src/authentication/register.php" class="contact button register-btn">Enregistrer</a>
+            <a href="src/authentication/login.php" class="connexion button connexion-btn">Connexion</a>
         </div>
     </nav>
 </header>

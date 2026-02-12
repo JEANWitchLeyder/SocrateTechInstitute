@@ -3141,7 +3141,7 @@ height: 80vh;
 
 background: 
   linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-  url('../images/STIapply.png');
+  url('../images/others/STIapply.png');
 
 background-position: center;
 background-size: cover;
@@ -3332,7 +3332,7 @@ margin-bottom:-5px!important;
       grid-column: span 4;
       grid-row: span 3;
       background-color:aqua;
-      background: url(../images/hero-image.png);
+      background: url(../images/others/hero-image.png);
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;

@@ -1,13 +1,21 @@
 <?php
 session_start();
 
-require_once __DIR__ . '/../database/database.php';
-require_once __DIR__ . '/../Core/functions.php';
-require_once __DIR__ . '/../partials/linkheader.php';
+require_once __DIR__ . '/../../bootstrap/init.php';
 
-if (is_user_logged_in()) {
+require_once __DIR__ . '/../Core/partials/linkheader.php';
+
+require_once __DIR__ . '/../Core/partials/header.php';
+
+require_once __DIR__ . '/../Core/helpers.php';
+
+/*if (is_user_logged_in()) {
     redirect('admindash.php');
-}
+}*/
+
+
+
+/*
 
 $username = $email = $password = $password_confirm = $role = "";
 $error = "";
@@ -84,12 +92,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         mysqli_stmt_close($stmt);
     }
 }
+
+*/
 ?>
 
 <div class="register-container-overlay-bg">
   <div class="regislog-container">
     <div class="regislog-left">
-      <a href="../index.php"><img src="../images/logowhite.png" alt=""></a>
+    <a href="index.html">
+                <img src="assets/images/others/logowhite.png" alt="Socrate Tech Institute">
+            </a>
       <h1>Register</h1>
     </div>
 
@@ -165,5 +177,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <?php
-require_once __DIR__ . '/../partials/footer.php';
+require_once __DIR__ . '/../Core/partials/footer.php';
 ?>
