@@ -1,4 +1,8 @@
 <?php
+namespace authentication;
+
+use Controller\AuthController;
+
 session_start();
 
 require_once __DIR__ . '/../../bootstrap/init.php';
@@ -8,6 +12,11 @@ require_once __DIR__ . '/../Core/partials/linkheader.php';
 require_once __DIR__ . '/../Core/partials/header.php';
 
 require_once __DIR__ . '/../Core/helpers.php';
+
+
+
+
+
 
 /*if (is_user_logged_in()) {
     redirect('admindash.php');
