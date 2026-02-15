@@ -2,125 +2,54 @@
 session_start();
 
 require_once __DIR__ . '/../../bootstrap/init.php';
-
-require_once __DIR__ . '/../Core/partials/linkheader.php';
-
-require_once __DIR__ . '/../Core/partials/header.php';
-
 require_once __DIR__ . '/../Core/helpers.php';
+require_once __DIR__ . '/../Controller/AuthController.php';
 
+use Controller\AuthController;
 
+$login_controller = new AuthController();
+$result = null;
 
+if (is_post_data()) {
+    $result = $login_controller->login_control();
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-if(is_user_logged_in()){
-  redirect('admindash.php');
-  }
-
-
-*/
-/*
-  $username = $email = $password = $password_confirm = $role = "";
-  $error = "";
-  if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $username = isset($_POST['username']) ? mysqli_real_escape_string($connect, trim(strip_tags($_POST['username']))) : '';
-    $password = isset($_POST['password']) ? mysqli_real_escape_string($connect, trim(strip_tags($_POST['password']))) : '';
-    
-  
-    if(empty($username) ||  empty($password)){
-      $error = "The fields cannot be empty";
-    }else if(!user_exists($connect,$username)){
-    $error = "Unknown Username. Please Register first before Login.";
-    }
-    
-    else if(strlen($password) < 8){
-      $error = "Password and Password Confirm should have at least 8 characters";
-    }else{
-      //Logic
-      $sql = "SELECT user_id,username,password FROM users WHERE username = ? LIMIT 1";
-      $stmt = mysqli_prepare($connect,$sql);
-      mysqli_stmt_bind_param($stmt,'s',$username);
-      
-     
-     
-      if( !mysqli_stmt_execute($stmt)){
-          if(password_verify($password,$user['password'])){
-            $_SESSION['username'] = $username;
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['logged_in'] = true;
-            $_SESSION['role'] = $user['role'];
-              
-            $routes = [
-          
-              'parent' => 'parentdash.php',
-              'teacher' => 'teacherdash.php',
-              'student' => 'studentdash.php',
-              'admin' => 'admindash.php'
-            ];
-    
-            $target = $routes[$user['role']] ?? 'index.php'; 
-            redirect("$target");
-          }
-          else{
-            $error = "Invalid Username or Password";
-          }
-         
-      }
-      mysqli_stmt_close($stmt);
-    }
-  }
-
-
-  */
+/**
+ * IMPORTANT:
+ * These includes MUST come AFTER the POST logic,
+ * otherwise redirect fails because HTML is output before header().
+ */
+require_once __DIR__ . '/../Core/partials/linkheader.php';
+require_once __DIR__ . '/../Core/partials/header.php';
 ?>
 
-
 <div class="login-container-overlay-bg">
-    <div class="login-container">
-      <div class="regislog-left">
-      <a href="index.html">
-                <img src="assets/images/others/logowhite.png" alt="Socrate Tech Institute">
-            </a>
-        <h1>Login</h1>
-      </div>
-      <div class="regislog-right">
-        <div class="closingIconLogin">
-          <i class="fa-solid fa-xmark"></i>
-        </div>
-        
-        <form action="" enctype="multipart/form-data" method="POST">
-        <?php if($error):?>
-          <div class="error_message" >
-            <p style="color: red";><?php echo htmlspecialchars($error)?></p>
-          </div>
-          <?php endif;?>
-        <input type="text" name = "username" placeholder="Votre Nom d'utilisateur: " class="email" value="<?= isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?>">
-          <input type="password" name = "password" placeholder="Votre Mot-de-Passe: " class="password">
-          <p><span>Ou</span><br>Login avec les réseaux sociaux</p>
-          <div class="social-media">
-            <span class="social-icon"><i class="fab fa-google"></i></span>
-            <span class="social-icon"><i class="fab fa-facebook"></i></span>
-            <span class="social-icon"><i class="fab fa-github"></i></span>
-            <span class="social-icon"><i class="fas fa-link"></i></span>
-          </div>          
-            <button class="contact button button-register" type="submit" style="color:white !important;">Login</button>  
-        </form>
-      </div>
-    </div>
-    </div>
-</div>
+  <div class="regislog-container">
+    <div class="regislog-left">
+      <a href="<?= BASE_URL ?>/index.php" class="logo-home">Socrate Tech Institute</a>
+      <h2>Login</h2>
 
+      <?php if (!empty($result['error'])): ?>
+        <p class="error-message"><?= htmlspecialchars((string)$result['error']) ?></p>
+      <?php endif; ?>
+
+      <form method="post">
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" name="username" required>
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" name="password" required>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+      </form>
+
+      <p class="switch-link">
+        No account? <a href="<?= BASE_URL ?>/src/authentication/register.php">Register</a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -7,14 +7,23 @@ function base_path(string $path = ""):string{
     return __DIR__ . ltrim($path,'/');
 }
 
-function base_url(string $path = ""):string{
-    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https://' : 'http');
+function base_url(string $path = ""): string
+{
+    $base = rtrim((string) BASE_URL, '/');
+    $path = ltrim($path, '/');
 
-    $host = $_SERVER['HTTP_HOST'];
+    return $path === '' ? $base : $base . '/' . $path;
+}
 
-    $project_folder = basename(__DIR__);
+function redirect(string $path): void
+{
+    if (preg_match('#^https?://#i', $path)) {
+        header("Location: " . $path);
+        exit;
+    }
 
-    return $protocol . $host .'/' . $project_folder . "/";
+    header("Location: " . base_url($path));
+    exit;
 }
 
 function asset_url(string $url = ""):string{
@@ -22,9 +31,6 @@ function asset_url(string $url = ""):string{
 }
 function upload_path(string $path = "") : string{
     return base_path($path,'/');
-}
-function redirect(string $url):void{
-    header("Location: " . base_url($url,"/"));
 }
 function is_logged_in():bool{
 return isset($_SESSION['user_id']);
@@ -45,6 +51,8 @@ function get_post_data($field, $default = ""){
 function is_post_data(){
     return $_SERVER['REQUEST_METHOD'] === "POST";
 }
+
+
 
 
 

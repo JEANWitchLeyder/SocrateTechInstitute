@@ -5,6 +5,8 @@ use PDO;
 
 use PDOException;
 
+
+
 class Database{
     private string $dbhost = DB_HOST;
     private string $dbname = DB_NAME;

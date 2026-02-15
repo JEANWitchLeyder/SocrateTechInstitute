@@ -2,6 +2,9 @@
 
 namespace Service;
 
+
+require_once __DIR__ . '/../Repository/AuthRepository.php';
+
 use Repository\AuthRepository;
 
 class AuthService{
