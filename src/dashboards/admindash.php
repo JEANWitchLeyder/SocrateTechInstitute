@@ -19,6 +19,22 @@ $controller = new AdmindashController($service);
 $vm = $controller->course_details_per_class_controller();
 
 
+//Schedule
+$vm = $adminController->schedule_per_class_controller();
+$schedule7e = $vm['schedule_per_class']['7e'];
+
+$days = $schedule7e['days'];
+$timeLabels = $schedule7e['timeLabels'];
+$timeMeta = $schedule7e['timeMeta'];
+$map = $schedule7e['map'];
+
+
+$flash = $adminController->handlePostActions($_POST);
+
+if (!empty($flash['message'])) {
+    $successMessage = $flash['message'];
+}
+
 
 
 
@@ -63,67 +79,37 @@ if (!function_exists('getAllRows')) {
 }
 
 
-function renderScheduleTable(mysqli $connect, string $className): void
-{
-  //schedule_per_class
 
-  $sql = "
-        SELECT 
-            d.day        AS day_name,
-            t.time_id    AS time_id,
-            t.start_time AS start_time,
-            t.end_time   AS end_time,
-            c.course_name AS course_name
-        FROM days d
-        CROSS JOIN time_slots t
-        LEFT JOIN schedule s
-            ON s.day_id  = d.day_id
-            AND s.time_id = t.time_id
-        LEFT JOIN classes cl
-            ON cl.class_id = s.class_id
-            AND cl.class_name = ?
-        LEFT JOIN courses c
-            ON c.course_id = s.course_id
-        ORDER BY t.start_time, d.day_id
-    ";
-  $stmt = mysqli_prepare($connect, $sql);
-  mysqli_stmt_bind_param($stmt, 's', $className);
-  mysqli_stmt_execute($stmt);
-  $result = mysqli_stmt_get_result($stmt);
-
-  $days       = [];
-  $timeLabels = [];
-  $timeMeta   = [];
-  $map        = [];
-
-  if ($result) {
-    while ($r = mysqli_fetch_assoc($result)) {
-      $day    = $r['day_name'];
-      $timeId = $r['time_id'];
-
-      $startShort = substr($r['start_time'], 0, 5);
-      $endShort   = substr($r['end_time'],   0, 5);
-      $label      = $startShort . ' - ' . $endShort;
-
-      if (!in_array($day, $days, true)) {
-        $days[] = $day;
-      }
-
-      if (!isset($timeLabels[$timeId])) {
-        $timeLabels[$timeId] = $label;
-        $timeMeta[$timeId]   = [
-          'start' => $startShort,
-          'end'   => $endShort,
-        ];
-      }
-
-      if (!empty($r['course_name'])) {
-        $map[$timeId][$day] = $r['course_name'];
-      }
-    }
-  }
   ?>
-  <table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <table>
     <thead>
       <tr>
         <th>Time</th>
@@ -170,494 +156,121 @@ function renderScheduleTable(mysqli $connect, string $className): void
       <?php endif; ?>
     </tbody>
   </table>
+
+
 <?php
+function renderStudentsTableView(array $rows): void
+{
+    if (empty($rows)) {
+        echo '<p>No students registered yet for this class.</p>';
+        return;
+    }
+
+    echo '<table class="courses-table students-table">';
+    echo '<thead>
+            <tr>
+              <th>ID</th>
+              <th>Full Name</th>
+              <th>Grade</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Place of Birth</th>
+              <th>Address</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>';
+
+    foreach ($rows as $row) {
+        $id   = (int)($row['student_id'] ?? 0);
+        $name = $row['full_name'] ?? trim(($row['first_name'] ?? '') . ' ' . ($row['last_name'] ?? ''));
+        $dob  = $row['date_of_birth'] ?? '';
+        $age  = $row['age'] ?? '';
+
+        echo '<tr>';
+        echo '<td>' . $id . '</td>';
+        echo '<td>' . h($name) . '</td>';
+        echo '<td>' . h($row['grade_level'] ?? '') . '</td>';
+        echo '<td>' . h($age) . '</td>';
+        echo '<td>' . h($row['gender_name'] ?? '') . '</td>';
+        echo '<td>' . h($row['phone'] ?? '') . '</td>';
+        echo '<td>' . h($row['email'] ?? '') . '</td>';
+        echo '<td>' . h($row['place_of_birth'] ?? '') . '</td>';
+        echo '<td>' . h($row['address'] ?? '') . '</td>';
+
+        echo '<td>
+                <div class="button-container">
+                  <button
+                    class="edit edit-student-btn"
+                    data-student-id="' . $id . '"
+                    data-student-fname="' . h($row['first_name'] ?? '') . '"
+                    data-student-lname="' . h($row['last_name'] ?? '') . '"
+                    data-student-email="' . h($row['email'] ?? '') . '"
+                    data-student-phone="' . h($row['phone'] ?? '') . '"
+                    data-student-class-id="' . (int)($row['class_id'] ?? 0) . '"
+                    data-student-gender-id="' . (int)($row['gender_id'] ?? 0) . '"
+                    data-student-dob="' . h($dob) . '"
+                    data-student-place="' . h($row['place_of_birth'] ?? '') . '"
+                    data-student-address="' . h($row['address'] ?? '') . '"
+                    data-student-age="' . h($age) . '"
+                  >
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+
+                  <button
+                    class="delete delete-student-btn"
+                    data-student-id="' . $id . '"
+                    data-student-name="' . h($name) . '"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </td>';
+
+        echo '</tr>';
+    }
+
+    echo '</tbody></table>';
 }
 
-function renderStudentsTable(mysqli $connect, int $classId): void
-{
-  //student_details_per_class
+$payload = $adminController->b(2);
+$info = $payload['basic_info_per_class'];
 
-  $sql = "
-      SELECT
-          s.student_id,
-          s.first_name,
-          s.last_name,
-          s.class_id,
-          s.gender_id,
-          c.class_name AS grade_level,
-          s.date_of_birth,
-          g.gender_name,
-          s.phone,
-          s.email,
-          s.place_of_birth,
-          s.address,
-          TIMESTAMPDIFF(YEAR, s.date_of_birth, CURDATE()) AS age
-      FROM students s
-      INNER JOIN classes c 
-          ON c.class_id = s.class_id
-      INNER JOIN gender g 
-          ON g.gender_id = s.gender_id
-      WHERE s.class_id = ?
-      ORDER BY s.student_id
-  ";
-
-  $stmt = mysqli_prepare($connect, $sql);
-  mysqli_stmt_bind_param($stmt, 'i', $classId);
-  mysqli_stmt_execute($stmt);
-  $result = mysqli_stmt_get_result($stmt);
-
-  if (!$result || mysqli_num_rows($result) === 0) {
-    echo '<p>No students registered yet for this class.</p>';
-    return;
-  }
-
-  echo '<table class="courses-table students-table">';
-  echo '<thead>
-          <tr>
-            <th>ID</th>
-            <th>Full Name</th>
-            <th>Grade</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Place of Birth</th>
-            <th>Address</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>';
-
-  while ($row = mysqli_fetch_assoc($result)) {
-    $fullName = $row['first_name'] . ' ' . $row['last_name'];
-    $age      = $row['age'] ?? '';
-    $dob      = $row['date_of_birth'] ?? '';
-
-    echo '<tr>';
-    echo '<td>' . (int)$row['student_id'] . '</td>';
-    echo '<td>' . h($fullName) . '</td>';
-    echo '<td>' . h($row['grade_level']) . '</td>';
-    echo '<td>' . h($age) . '</td>';
-    echo '<td>' . h($row['gender_name']) . '</td>';
-    echo '<td>' . h($row['phone']) . '</td>';
-    echo '<td>' . h($row['email']) . '</td>';
-    echo '<td>' . h($row['place_of_birth']) . '</td>';
-    echo '<td>' . h($row['address']) . '</td>';
-
-    echo '<td>
-              <div class="button-container">
-                <button
-                  class="edit edit-student-btn"
-                  data-student-id="' . (int)$row['student_id'] . '"
-                  data-student-fname="' . h($row['first_name']) . '"
-                  data-student-lname="' . h($row['last_name']) . '"
-                  data-student-email="' . h($row['email']) . '"
-                  data-student-phone="' . h($row['phone']) . '"
-                  data-student-class-id="' . (int)$row['class_id'] . '"
-                  data-student-gender-id="' . (int)$row['gender_id'] . '"
-                  data-student-dob="' . h($dob) . '"
-                  data-student-place="' . h($row['place_of_birth']) . '"
-                  data-student-address="' . h($row['address']) . '"
-                  data-student-age="' . h($age) . '"
-                >
-                  <i class="fa-solid fa-pen"></i>
-                </button>
-
-                <button
-                  class="delete delete-student-btn"
-                  data-student-id="' . (int)$row['student_id'] . '"
-                  data-student-name="' . h($fullName) . '"
-                >
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </div>
-            </td>';
-
-    echo '</tr>';
-  }
-
-  echo '</tbody></table>';
-}
-
-
-
-function renderGenericClassBasicInfo(mysqli $connect, int $classId): void
-{
-  //basic_infos_per_class
-
-  $sql = "
-        SELECT class_name, classroom, start_academic_year, end_academic_year, capacity
-        FROM classes
-        WHERE class_id = ?
-        LIMIT 1
-    ";
-  $stmt = mysqli_prepare($connect, $sql);
-  mysqli_stmt_bind_param($stmt, 'i', $classId);
-  mysqli_stmt_execute($stmt);
-  $res = mysqli_stmt_get_result($stmt);
-  $row = $res ? mysqli_fetch_assoc($res) : null;
-
-  if (!$row) {
+if (!$info['found']) {
     echo "<p>No information for this class yet.</p>";
-    return;
-  }
-
-  $className = $row['class_name'];
-  $room      = $row['classroom'] ?: 'TBD';
-  $startY    = $row['start_academic_year'] ?: 'TBD';
-  $endY      = $row['end_academic_year'] ?: 'TBD';
-  $capacity  = $row['capacity'] ?: 'TBD';
-
-  $classIdValue = $classId;
-
-  $sqlCount = "
-        SELECT
-          (SELECT COUNT(*) FROM students WHERE class_id = ?) AS nb_students,
-          (SELECT COUNT(DISTINCT teacher_id) FROM courses WHERE class_id = ?) AS nb_teachers,
-          (SELECT COUNT(*) FROM courses WHERE class_id = ?) AS nb_courses
-    ";
-  $stmt2 = mysqli_prepare($connect, $sqlCount);
-  mysqli_stmt_bind_param($stmt2, 'iii', $classIdValue, $classIdValue, $classIdValue);
-  mysqli_stmt_execute($stmt2);
-  $counts = mysqli_stmt_get_result($stmt2);
-  $countsRow = $counts ? mysqli_fetch_assoc($counts) : ['nb_students' => 0, 'nb_teachers' => 0, 'nb_courses' => 0];
-
-?>
-  <div class="basic-info-container">
-    <div class="basic-info">
-      <span><?= h($className) ?></span>
-      <h2>Academic Year: <?= h($startY) ?> - <?= h($endY) ?></h2>
-      <h2>Classroom #: <?= h($room) ?></h2>
-      <h2>Capacity: <?= h($capacity) ?></h2>
-      <h2>Number of Students: <?= (int)$countsRow['nb_students'] ?></h2>
-      <h2>Number of Teachers: <?= (int)$countsRow['nb_teachers'] ?></h2>
-      <h2>Number of Courses: <?= (int)$countsRow['nb_courses'] ?></h2>
-    </div>
-    <div class="tutor-info">
-      <div class="tutor-info-left">
-        <img src="images/default-tutor.png" alt="">
+} else {
+    ?>
+    <div class="basic-info-container">
+      <div class="basic-info">
+        <span><?= h($info['class_name']) ?></span>
+        <h2>Academic Year: <?= h($info['startY']) ?> - <?= h($info['endY']) ?></h2>
+        <h2>Classroom #: <?= h($info['classroom']) ?></h2>
+        <h2>Capacity: <?= h($info['capacity']) ?></h2>
+        <h2>Number of Students: <?= (int)$info['nb_students'] ?></h2>
+        <h2>Number of Teachers: <?= (int)$info['nb_teachers'] ?></h2>
+        <h2>Number of Courses: <?= (int)$info['nb_courses'] ?></h2>
       </div>
-      <div class="tutor-info-right">
-        <h2>Class Tutor</h2>
-        <h4>To be assigned</h4>
-        <p><strong>Email:</strong> <a href="#">tutor@sti.edu.ht</a></p>
-        <p><strong>Phone:</strong> <a href="#">+509 0000 0000</a></p>
-        <p>This placeholder uses your database for class information. Once you configure the
-          <code>tutors</code> table you can replace it with a dynamic tutor card.
-        </p>
+
+      <div class="tutor-info">
+        <div class="tutor-info-left">
+          <img src="images/default-tutor.png" alt="">
+        </div>
+        <div class="tutor-info-right">
+          <h2>Class Tutor</h2>
+          <h4>To be assigned</h4>
+          <p><strong>Email:</strong> <a href="#">tutor@sti.edu.ht</a></p>
+          <p><strong>Phone:</strong> <a href="#">+509 0000 0000</a></p>
+          <p>This placeholder uses your database for class information...</p>
+        </div>
       </div>
     </div>
-  </div>
-<?php
-}
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_course'])) {
-  //add_course
-
-
-  $course_name = trim($_POST['course_name'] ?? '');
-  $coefficient = (int)($_POST['coefficient'] ?? 0);
-  $description = trim($_POST['description'] ?? '');
-  $class_id    = (int)($_POST['class_id'] ?? 0);
-  $teacher_id  = (int)($_POST['teacher_id'] ?? 0);
-
-  if ($course_name === '' || $coefficient <= 0 || $class_id <= 0 || $teacher_id <= 0) {
-    $courseError = "Please fill all course fields correctly.";
-  } else {
-    $sql = "INSERT INTO courses (course_name, coefficient, description, class_id, teacher_id)
-                VALUES (?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($connect, $sql);
-    mysqli_stmt_bind_param($stmt, 'sisii', $course_name, $coefficient, $description, $class_id, $teacher_id);
-
-    if (mysqli_stmt_execute($stmt)) {
-      $course_id   = mysqli_insert_id($connect);
-      $course_code = strtoupper(substr($course_name, 0, 3)) . $course_id;
-
-      $sql2  = "UPDATE courses SET course_code = ? WHERE course_id = ?";
-      $stmt2 = mysqli_prepare($connect, $sql2);
-      mysqli_stmt_bind_param($stmt2, 'si', $course_code, $course_id);
-      mysqli_stmt_execute($stmt2);
-
-      $courseAdded     = true;
-      $successMessage  = "The course has been added successfully.";
-    } else {
-      $courseError = "Database error while adding course.";
-    }
-  }
+    <?php
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_course'])) {
+ 
 
-  //edit_course
-  $course_id   = (int)($_POST['course_id'] ?? 0);
-  $course_name = trim($_POST['course_name'] ?? '');
-  $coefficient = (int)($_POST['coefficient'] ?? 0);
-  $description = trim($_POST['description'] ?? '');
-  $class_id    = (int)($_POST['class_id'] ?? 0);
-  $teacher_id  = (int)($_POST['teacher_id'] ?? 0);
-
-  if ($course_id <= 0 || $course_name === '' || $coefficient <= 0 || $class_id <= 0 || $teacher_id <= 0) {
-    $courseError = "Please fill all course fields correctly.";
-  } else {
-    $sql = "UPDATE courses
-                SET course_name = ?, coefficient = ?, description = ?, class_id = ?, teacher_id = ?
-                WHERE course_id = ?";
-    $stmt = mysqli_prepare($connect, $sql);
-    mysqli_stmt_bind_param(
-      $stmt,
-      'sisiii',
-      $course_name,
-      $coefficient,
-      $description,
-      $class_id,
-      $teacher_id,
-      $course_id
-    );
-
-    if (mysqli_stmt_execute($stmt)) {
-      $courseEdited    = true;
-      $successMessage  = "The course has been updated successfully.";
-
-      $course_code = strtoupper(substr($course_name, 0, 3)) . $course_id;
-      $stmt2 = mysqli_prepare($connect, "UPDATE courses SET course_code = ? WHERE course_id = ?");
-      mysqli_stmt_bind_param($stmt2, 'si', $course_code, $course_id);
-      mysqli_stmt_execute($stmt2);
-    } else {
-      $courseError = "Database error while updating course.";
-    }
-  }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_course'])) {
-  //delete_course
-
-  $course_id = (int)($_POST['course_id'] ?? 0);
-  if ($course_id > 0) {
-    $stmt = mysqli_prepare($connect, "DELETE FROM courses WHERE course_id = ?");
-    mysqli_stmt_bind_param($stmt, 'i', $course_id);
-    if (mysqli_stmt_execute($stmt)) {
-      $courseDeleted   = true;
-      $successMessage  = "The course has been deleted successfully.";
-    } else {
-      $courseError = "Database error while deleting course.";
-    }
-  }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_student'])) {
-  //add_student
-  $first_name        = trim($_POST['first_name'] ?? '');
-  $last_name         = trim($_POST['last_name'] ?? '');
-  $class_id          = (int)($_POST['class_id'] ?? 0);
-  $gender_id         = (int)($_POST['gender_id'] ?? 0);
-  $phone             = trim($_POST['phone'] ?? '');
-  $email             = trim($_POST['email'] ?? '');
-  $place_of_birth    = trim($_POST['place_of_birth'] ?? '');
-  $address           = trim($_POST['address'] ?? '');
-  $date_of_birth_raw = trim($_POST['date_of_birth'] ?? '');
-
-  if ($date_of_birth_raw === '' || !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_of_birth_raw)) {
-    $date_of_birth = null;
-  } else {
-    $date_of_birth = $date_of_birth_raw;
-  }
-
-  if ($first_name === '' || $last_name === '' || $class_id <= 0 || $gender_id <= 0) {
-    $studentError = "Please fill all required fields for the student.";
-  } else {
-
-    $sql = "
-          INSERT INTO students 
-              (first_name, last_name, class_id, date_of_birth, gender_id, phone, email, place_of_birth, address)
-          VALUES 
-              (?, ?, ?, ?, ?, ?, ?, ?, ?)
-      ";
-    $stmt = mysqli_prepare($connect, $sql);
-    mysqli_stmt_bind_param(
-      $stmt,
-      'ssisissss',
-      $first_name,
-      $last_name,
-      $class_id,
-      $date_of_birth,
-      $gender_id,
-      $phone,
-      $email,
-      $place_of_birth,
-      $address
-    );
-
-    if (mysqli_stmt_execute($stmt)) {
-      $studentAdded   = true;
-      $successMessage = "The student has been added successfully.";
-    } else {
-      $studentError   = "Database error while adding student: " . mysqli_error($connect);
-    }
-  }
-}
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_student'])) {
-  //edit_student
-  $student_id        = (int)($_POST['student_id'] ?? 0);
-  $first_name        = trim($_POST['first_name'] ?? '');
-  $last_name         = trim($_POST['last_name'] ?? '');
-  $class_id          = (int)($_POST['class_id'] ?? 0);
-  $gender_id         = (int)($_POST['gender_id'] ?? 0);
-  $phone             = trim($_POST['phone'] ?? '');
-  $email             = trim($_POST['email'] ?? '');
-  $place_of_birth    = trim($_POST['place_of_birth'] ?? '');
-  $address           = trim($_POST['address'] ?? '');
-  $date_of_birth_raw = trim($_POST['date_of_birth'] ?? '');
-
-  if ($date_of_birth_raw === '' || !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_of_birth_raw)) {
-    $date_of_birth = null;
-  } else {
-    $date_of_birth = $date_of_birth_raw;
-  }
-
-  if ($student_id <= 0 || $first_name === '' || $last_name === '' || $class_id <= 0 || $gender_id <= 0) {
-    $studentError = "Please fill all required fields for the student.";
-  } else {
-
-    $sql = "
-          UPDATE students
-             SET first_name     = ?,
-                 last_name      = ?,
-                 class_id       = ?,
-                 date_of_birth  = ?,
-                 gender_id      = ?,
-                 phone          = ?,
-                 email          = ?,
-                 place_of_birth = ?,
-                 address        = ?
-           WHERE student_id     = ?
-      ";
-    $stmt = mysqli_prepare($connect, $sql);
-    mysqli_stmt_bind_param(
-      $stmt,
-      'ssisissssi',
-      $first_name,
-      $last_name,
-      $class_id,
-      $date_of_birth,
-      $gender_id,
-      $phone,
-      $email,
-      $place_of_birth,
-      $address,
-      $student_id
-    );
-
-    if (mysqli_stmt_execute($stmt)) {
-      $studentEdited   = true;
-      $successMessage  = "The student has been updated successfully.";
-    } else {
-      $studentError = "Database error while updating student: " . mysqli_error($connect);
-    }
-  }
-}
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_student'])) {
-  //delete_student
-  $student_id = (int)($_POST['student_id'] ?? 0);
-
-  if ($student_id <= 0) {
-    $studentError = "Invalid student selected for deletion.";
-  } else {
-    $sql = "DELETE FROM students WHERE student_id = ?";
-    $stmt = mysqli_prepare($connect, $sql);
-    mysqli_stmt_bind_param($stmt, 'i', $student_id);
-
-    if (mysqli_stmt_execute($stmt)) {
-      $studentDeleted   = true;
-      $successMessage   = "The student has been deleted successfully.";
-    } else {
-      $studentError = "Database error while deleting student: " . mysqli_error($connect);
-    }
-  }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_user'])) {
-  //edit_user
-  $userType = $_POST['user_type'] ?? '';
-  $userId   = (int)($_POST['user_id'] ?? 0);
-  $email    = trim($_POST['email'] ?? '');
-
-  if ($userId <= 0 || $userType === '' || $email === '') {
-    $userError = "User type, id and email are required.";
-  } else {
-    switch ($userType) {
-      case 'admins':
-        $sql = "UPDATE admin SET email = ? WHERE admin_id = ?";
-        break;
-      case 'teachers':
-        $sql = "UPDATE teachers SET email = ? WHERE teacher_id = ?";
-        break;
-      case 'parents':
-        $sql = "UPDATE parents SET email = ? WHERE parent_id = ?";
-        break;
-      case 'students':
-        $sql = "UPDATE students SET email = ? WHERE student_id = ?";
-        break;
-      default:
-        $sql = '';
-    }
-
-    if ($sql !== '') {
-      $stmt = mysqli_prepare($connect, $sql);
-      mysqli_stmt_bind_param($stmt, 'si', $email, $userId);
-      if (mysqli_stmt_execute($stmt)) {
-        $userEdited     = true;
-        $successMessage = "The user email has been updated.";
-      } else {
-        $userError = "Database error while updating user.";
-      }
-    } else {
-      $userError = "Unknown user type.";
-    }
-  }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_user'])) {
-  //delete_user
-  $userType = $_POST['user_type'] ?? '';
-  $userId   = (int)($_POST['user_id'] ?? 0);
-
-  if ($userId <= 0 || $userType === '') {
-    $userError = "User type and id are required.";
-  } else {
-    switch ($userType) {
-      case 'admins':
-        $sql = "DELETE FROM admin WHERE admin_id = ?";
-        break;
-      case 'teachers':
-        $sql = "DELETE FROM teachers WHERE teacher_id = ?";
-        break;
-      case 'parents':
-        $sql = "DELETE FROM parents WHERE parent_id = ?";
-        break;
-      case 'students':
-        $sql = "DELETE FROM students WHERE student_id = ?";
-        break;
-      default:
-        $sql = '';
-    }
-
-    if ($sql !== '') {
-      $stmt = mysqli_prepare($connect, $sql);
-      mysqli_stmt_bind_param($stmt, 'i', $userId);
-      if (mysqli_stmt_execute($stmt)) {
-        $userDeleted    = true;
-        $successMessage = "The user has been deleted.";
-      } else {
-        $userError = "Database error while deleting user.";
-      }
-    } else {
-      $userError = "Unknown user type.";
-    }
-  }
-}
 
 $sqlCounts = "
   SELECT
