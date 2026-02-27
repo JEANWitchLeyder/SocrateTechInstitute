@@ -1,251 +1,304 @@
-<?php 
+<?php
+declare(strict_types=1);
 
 namespace Service;
 
+require_once __DIR__ . '/../Repository/AdmindashRepo.php';
 
-require_once __DIR__ . '/../Repository/AuthRepository.php';
+use Repository\AdmindashRepo;
 
-use Repository\AdminRepo;
-use Repository\AuthRepository;
+final class AdmindashService
+{
+    private AdmindashRepo $repo;
 
-class AdmindashService{
-    private AdminRepo $user;
-
-    public function __construct(private AdminRepo $repo){}
-
-    public function course_details_per_class_service(int $classId){
-     return $this->repo->course_details_per_class_repo($classId);
-    }
-    
-    
-    public function schedule_per_class_service(string $className): array
+    public function __construct()
     {
-    $rows = $this->repo->schedule_per_class_repo($className);
-
-    $days = [];
-    $timeLabels = [];
-    $timeMeta = [];
-    $map = [];
-
-    foreach ($rows as $r) {
-        $day = $r['day_name'];
-        $timeId = (int)$r['time_id'];
-
-        $startShort = substr($r['start_time'], 0, 5);
-        $endShort   = substr($r['end_time'], 0, 5);
-        $label      = $startShort . ' - ' . $endShort;
-
-        if (!in_array($day, $days, true)) {
-            $days[] = $day;
-        }
-
-        if (!isset($timeLabels[$timeId])) {
-            $timeLabels[$timeId] = $label;
-            $timeMeta[$timeId] = ['start' => $startShort, 'end' => $endShort];
-        }
-
-        if (!empty($r['course_name'])) {
-            $map[$timeId][$day] = $r['course_name'];
-        }
+        $this->repo = new AdmindashRepo();
     }
 
-    return [
-        'days' => $days,
-        'timeLabels' => $timeLabels,
-        'timeMeta' => $timeMeta,
-        'map' => $map,
-    ];
+     //Dashboard view model
+    public function build_dashboard_viewmodel_service(?string $selected_class_name): array
+    {
+        $classes_list = $this->repo->list_classes_repo();
+
+        if ($selected_class_name === null || $selected_class_name === '') {
+            $selected_class_name = (string)($classes_list[0]['class_name'] ?? '');
+        }
+
+        $selected_class_id = $selected_class_name !== ''
+            ? $this->repo->class_id_by_name_repo($selected_class_name)
+            : null;
+
+        $dashboard_counts = [
+            'admins'   => $this->repo->count_table('admins'),
+            'teachers' => $this->repo->count_table('teachers'),
+            'students' => $this->repo->count_table('students'),
+            'parents'  => $this->repo->count_table('parents'),
+            'classes'  => $this->repo->count_table('classes'),
+            'courses'  => $this->repo->count_table('courses'),
+        ];
+
+        $admins_list   = $this->repo->list_admins_repo(25);
+        $teachers_list = $this->repo->list_teachers_repo(25);
+        $students_list = $this->repo->list_students_repo(25);
+        $parents_list  = $this->repo->list_parents_repo(25);
+
+        $teachers_basic_list = $this->repo->list_teachers_basic_repo();
+
+        $courses_for_class = $selected_class_id
+            ? $this->repo->course_details_per_class_repo($selected_class_id)
+            : [];
+
+        $schedule_viewmodel = $selected_class_id
+            ? $this->build_schedule_viewmodel_service($selected_class_id)
+            : $this->empty_schedule_viewmodel();
+
+        return [
+            'counts' => $dashboard_counts,
+
+            'lists' => [
+                'admins'   => $admins_list,
+                'teachers' => $teachers_list,
+                'students' => $students_list,
+                'parents'  => $parents_list,
+            ],
+
+            'classes'        => $classes_list,
+            'teachers_basic' => $teachers_basic_list,
+
+            'selected' => [
+                'class_name' => $selected_class_name,
+                'class_id'   => $selected_class_id,
+            ],
+
+            'courses_for_class' => $courses_for_class,
+            'schedule'          => $schedule_viewmodel,
+        ];
+    }
+
+    private function empty_schedule_viewmodel(): array
+    {
+        return [
+            'days'       => ['Monday','Tuesday','Wednesday','Thursday','Friday'],
+            'timeLabels' => [],
+            'timeMeta'   => [],
+            'map'        => [],
+        ];
+    }
+
+      //Schedule view model
+    public function build_schedule_viewmodel_service(int $class_id): array
+    {
+        $day_rows  = $this->repo->list_days_repo(5);
+        $days_list = [];
+
+        foreach ($day_rows as $dr) {
+            $name = trim((string)($dr['day_name'] ?? ''));
+            if ($name !== '') {
+                $days_list[] = $name;
+            }
+        }
+
+        if (empty($days_list)) {
+            $days_list = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
+        }
+
+        $time_rows   = $this->repo->list_days_repo();
+        $time_labels = [];
+        $time_meta   = [];
+
+        foreach ($time_rows as $time_row) {
+            $time_id    = (int)($time_row['time_id'] ?? 0);
+            $start_time = trim((string)($time_row['start_time'] ?? ''));
+            $end_time   = trim((string)($time_row['end_time'] ?? ''));
+
+            if ($time_id <= 0) {
+                continue;
+            }
+
+            $time_labels[$time_id] = $start_time . ' - ' . $end_time;
+            $time_meta[$time_id] = [
+                'start' => $start_time,
+                'end'   => $end_time,
+            ];
+        }
+
+        $schedule_rows = $this->repo->schedule_rows_by_class_id_repo($class_id);
+
+        $schedule_map = [];
+        foreach ($schedule_rows as $sr) {
+            $time_id  = (int)($sr['time_id'] ?? 0);
+            $day_name = trim((string)($sr['day_name'] ?? ''));
+
+            if ($time_id <= 0 || $day_name === '') {
+                continue;
+            }
+
+            $course_name      = trim((string)($sr['course_name'] ?? ''));
+            $teacher_fullname = trim((string)($sr['teacher_fullname'] ?? ''));
+
+            $cell_value = $course_name;
+            if ($teacher_fullname !== '') {
+                $cell_value .= ' — ' . $teacher_fullname;
+            }
+
+            $schedule_map[$time_id][$day_name] = $cell_value;
+        }
+
+        return [
+            'days'       => $days_list,
+            'timeLabels' => $time_labels,
+            'timeMeta'   => $time_meta,
+            'map'        => $schedule_map,
+        ];
+    }
+    //courses
+    public function create_course_service(array $post_data): array
+    {
+        $payload = $this->clean_course_payload($post_data);
+        $errors  = $this->validate_course_payload($payload);
+
+        if (!empty($errors)) {
+            return ['success' => false, 'errors' => $errors];
+        }
+
+        $ok = $this->repo->create_course_repo($payload);
+        return ['success' => $ok, 'errors' => $ok ? [] : ['DB insert failed']];
+    }
+
+    public function update_course_service(int $course_id, array $post_data): array
+    {
+        if ($course_id <= 0) {
+            return ['success' => false, 'errors' => ['Invalid course id']];
+        }
+
+        $payload = $this->clean_course_payload($post_data);
+        $errors  = $this->validate_course_payload($payload);
+
+        if (!empty($errors)) {
+            return ['success' => false, 'errors' => $errors];
+        }
+
+        $ok = $this->repo->update_course_repo($course_id, $payload);
+        return ['success' => $ok, 'errors' => $ok ? [] : ['DB update failed']];
+    }
+
+    public function delete_course_service(int $course_id): array
+    {
+        if ($course_id <= 0) {
+            return ['success' => false, 'errors' => ['Invalid course id']];
+        }
+
+        $ok = $this->repo->delete_course_repo($course_id);
+        return ['success' => $ok, 'errors' => $ok ? [] : ['DB delete failed']];
+    }
+
+    private function clean_course_payload(array $post_data): array
+    {
+        return [
+            'course_code' => trim((string)($post_data['course_code'] ?? '')),
+            'course_name' => trim((string)($post_data['course_name'] ?? '')),
+            'coefficient' => (float)($post_data['coefficient'] ?? 1),
+            'description' => trim((string)($post_data['description'] ?? '')),
+            'class_id'    => (int)($post_data['class_id'] ?? 0),
+            'teacher_id'  => (int)($post_data['teacher_id'] ?? 0),
+        ];
+    }
+
+    private function validate_course_payload(array $payload): array
+    {
+        $errors = [];
+
+        if ($payload['course_code'] === '') $errors[] = 'Course code is required';
+        if ($payload['course_name'] === '') $errors[] = 'Course name is required';
+        if ($payload['class_id'] <= 0) $errors[] = 'Class is required';
+        if ($payload['teacher_id'] <= 0) $errors[] = 'Teacher is required';
+        if ($payload['coefficient'] <= 0) $errors[] = 'Coefficient must be > 0';
+
+        return $errors;
+    }
+
+     //schedule
+    public function upsert_schedule_cell_service(int $class_id, int $time_id, int $day_id, int $course_id): array
+    {
+        if ($class_id <= 0 || $time_id <= 0 || $day_id <= 0 || $course_id <= 0) {
+            return ['success' => false, 'errors' => ['Invalid schedule parameters']];
+        }
+
+        $ok = $this->repo->upsert_schedule_cell_repo($class_id, $time_id, $day_id, $course_id);
+        return ['success' => $ok, 'errors' => $ok ? [] : ['DB schedule upsert failed']];
+    }
+
+    public function delete_schedule_cell_service(int $class_id, int $time_id, int $day_id): array
+    {
+        if ($class_id <= 0 || $time_id <= 0 || $day_id <= 0) {
+            return ['success' => false, 'errors' => ['Invalid schedule parameters']];
+        }
+
+        $ok = $this->repo->delete_schedule_cell_repo($class_id, $time_id, $day_id);
+        return ['success' => $ok, 'errors' => $ok ? [] : ['DB schedule delete failed']];
+    }
+
+    //students
+    public function create_student_service(array $post_data): array
+    {
+        $payload = $this->clean_student_payload($post_data);
+        $errors  = $this->validate_student_payload($payload);
+
+        if (!empty($errors)) {
+            return ['success' => false, 'errors' => $errors];
+        }
+
+        $ok = $this->repo->create_student_repo($payload);
+        return ['success' => $ok, 'errors' => $ok ? [] : ['DB insert failed']];
+    }
+
+    public function update_student_service(int $student_id, array $post_data): array
+    {
+        if ($student_id <= 0) {
+            return ['success' => false, 'errors' => ['Invalid student id']];
+        }
+
+        $payload = $this->clean_student_payload($post_data);
+        $errors  = $this->validate_student_payload($payload);
+
+        if (!empty($errors)) {
+            return ['success' => false, 'errors' => $errors];
+        }
+
+        $ok = $this->repo->update_student_repo($student_id, $payload);
+        return ['success' => $ok, 'errors' => $ok ? [] : ['DB update failed']];
+    }
+
+    public function delete_student_service(int $student_id): array
+    {
+        if ($student_id <= 0) {
+            return ['success' => false, 'errors' => ['Invalid student id']];
+        }
+
+        $ok = $this->repo->delete_student_repo($student_id);
+        return ['success' => $ok, 'errors' => $ok ? [] : ['DB delete failed']];
+    }
+
+    private function clean_student_payload(array $post_data): array
+    {
+        return [
+            'first_name' => trim((string)($post_data['first_name'] ?? '')),
+            'last_name'  => trim((string)($post_data['last_name'] ?? '')),
+            'email'      => trim((string)($post_data['email'] ?? '')),
+            'phone'      => trim((string)($post_data['phone'] ?? '')),
+            'class_id'   => (int)($post_data['class_id'] ?? 0),
+        ];
+    }
+
+    private function validate_student_payload(array $payload): array
+    {
+        $errors = [];
+
+        if ($payload['first_name'] === '') $errors[] = 'First name is required';
+        if ($payload['last_name'] === '')  $errors[] = 'Last name is required';
+        if ($payload['class_id'] <= 0)     $errors[] = 'Class is required';
+
+        return $errors;
+    }
 }
-
-  public function student_per_class_service(int $classId){
-    return $this->repo->students_details_per_class_repo($classId);
-  }
-
-  public basic_info_per_class_service(int $classId){
-    $row = $this->repo->basic_info_per_class_repo($classId);
-
-    if (!$row) {
-        return ['found' => false];
-    }
-
-    return [
-        'found' => true,
-        'class_name' => $row['class_name'],
-        'classroom'  => $row['classroom'] ?: 'TBD',
-        'startY'     => $row['start_academic_year'] ?: 'TBD',
-        'endY'       => $row['end_academic_year'] ?: 'TBD',
-        'capacity'   => $row['capacity'] ?: 'TBD',
-        'nb_students'=> (int)($row['nb_students'] ?? 0),
-        'nb_teachers'=> (int)($row['nb_teachers'] ?? 0),
-        'nb_courses' => (int)($row['nb_courses']  ?? 0),
-    ];
-  }
-
-  public function add_course(array $data): array
-    {
-        $courseName = trim($data['course_name'] ?? '');
-        $coefficient = (int)($data['coefficient'] ?? 0);
-        $description = trim($data['description'] ?? '');
-        $classId = (int)($data['class_id'] ?? 0);
-        $teacherId = (int)($data['teacher_id'] ?? 0);
-
-        if ($courseName === '' || $coefficient <= 0 || $classId <= 0 || $teacherId <= 0) {
-            return ['success' => false, 'message' => 'Please fill all course fields correctly.'];
-        }
-
-        $courseId = $this->repo->insertCourse($courseName, $coefficient, $description, $classId, $teacherId);
-
-        if (!$courseId) {
-            return ['success' => false, 'message' => 'Database error while adding course.'];
-        }
-
-        $courseCode = strtoupper(substr($courseName, 0, 3)) . $courseId;
-        $this->repo->updateCourseCode($courseId, $courseCode);
-
-        return ['success' => true, 'message' => 'The course has been added successfully.'];
-    }
-
-    public function edit_course(array $data): array
-    {
-        $courseId = (int)($data['course_id'] ?? 0);
-        $courseName = trim($data['course_name'] ?? '');
-        $coefficient = (int)($data['coefficient'] ?? 0);
-        $description = trim($data['description'] ?? '');
-        $classId = (int)($data['class_id'] ?? 0);
-        $teacherId = (int)($data['teacher_id'] ?? 0);
-
-        if ($courseId <= 0 || $courseName === '' || $coefficient <= 0 || $classId <= 0 || $teacherId <= 0) {
-            return ['success' => false, 'message' => 'Please fill all course fields correctly.'];
-        }
-
-        $updated = $this->repo->updateCourse($courseId, $courseName, $coefficient, $description, $classId, $teacherId);
-
-        if (!$updated) {
-            return ['success' => false, 'message' => 'Database error while updating course.'];
-        }
-
-        $courseCode = strtoupper(substr($courseName, 0, 3)) . $courseId;
-        $this->repo->updateCourseCode($courseId, $courseCode);
-
-        return ['success' => true, 'message' => 'The course has been updated successfully.'];
-    }
-
-    public function delete_course(array $data): array
-    {
-        $courseId = (int)($data['course_id'] ?? 0);
-
-        if ($courseId <= 0) {
-            return ['success' => false, 'message' => 'Invalid course selected.'];
-        }
-
-        $deleted = $this->repo->deleteCourse($courseId);
-
-        return $deleted
-            ? ['success' => true, 'message' => 'The course has been deleted successfully.']
-            : ['success' => false, 'message' => 'Database error while deleting course.'];
-    }
-
-
-    public function add_student(array $data): array
-    {
-        $firstName = trim($data['first_name'] ?? '');
-        $lastName = trim($data['last_name'] ?? '');
-        $classId = (int)($data['class_id'] ?? 0);
-        $genderId = (int)($data['gender_id'] ?? 0);
-        $dob = $data['date_of_birth'] ?? null;
-
-        if ($firstName === '' || $lastName === '' || $classId <= 0 || $genderId <= 0) {
-            return ['success' => false, 'message' => 'Please fill all required fields.'];
-        }
-
-        $inserted = $this->repo->insertStudent($data);
-
-        return $inserted
-            ? ['success' => true, 'message' => 'The student has been added successfully.']
-            : ['success' => false, 'message' => 'Database error while adding student.'];
-    }
-
-    public function edit_student(array $data): array
-    {
-        $studentId = (int)($data['student_id'] ?? 0);
-
-        if ($studentId <= 0) {
-            return ['success' => false, 'message' => 'Invalid student selected.'];
-        }
-
-        $updated = $this->repo->updateStudent($studentId, $data);
-
-        return $updated
-            ? ['success' => true, 'message' => 'The student has been updated successfully.']
-            : ['success' => false, 'message' => 'Database error while updating student.'];
-    }
-
-    public function delete_student(array $data): array
-    {
-        $studentId = (int)($data['student_id'] ?? 0);
-
-        if ($studentId <= 0) {
-            return ['success' => false, 'message' => 'Invalid student selected.'];
-        }
-
-        $deleted = $this->repo->deleteStudent($studentId);
-
-        return $deleted
-            ? ['success' => true, 'message' => 'The student has been deleted successfully.']
-            : ['success' => false, 'message' => 'Database error while deleting student.'];
-    }
-
-
-    public function edit_user(array $data): array
-    {
-        $userType = $data['user_type'] ?? '';
-        $userId = (int)($data['user_id'] ?? 0);
-        $email = trim($data['email'] ?? '');
-
-        if ($userType === '' || $userId <= 0 || $email === '') {
-            return ['success' => false, 'message' => 'Invalid user data.'];
-        }
-
-        $updated = $this->repo->updateUserEmail($userType, $userId, $email);
-
-        return $updated
-            ? ['success' => true, 'message' => 'The user email has been updated.']
-            : ['success' => false, 'message' => 'Database error while updating user.'];
-    }
-
-    public function delete_user(array $data): array
-    {
-        $userType = $data['user_type'] ?? '';
-        $userId = (int)($data['user_id'] ?? 0);
-
-        if ($userType === '' || $userId <= 0) {
-            return ['success' => false, 'message' => 'Invalid user selected.'];
-        }
-
-        $deleted = $this->repo->deleteUser($userType, $userId);
-
-        return $deleted
-            ? ['success' => true, 'message' => 'The user has been deleted.']
-            : ['success' => false, 'message' => 'Database error while deleting user.'];
-    }
-
-
-
-
-
-
-
-
-}
-
-
-
-    
-
-
-
-
-
-
-
-?>

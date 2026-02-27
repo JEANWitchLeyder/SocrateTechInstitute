@@ -3,7 +3,7 @@ function renderCoursesRows(mysqli $connect, int $classId): void
 {
   //course_details_per_class
 
-  $sql = " 
+   $sql = "
         SELECT 
             c.course_id,
             c.course_code,

@@ -7,84 +7,132 @@ require_once __DIR__ . '/../Service/AdmindashService.php';
 
 use Service\AdmindashService;
 
-class AdmindashController
+final class AdmindashController
 {
-   public function __construct(private AdmindashService $service){}
+    private AdmindashService $service;
 
-   public function course_details_per_class_controller():array{
-    return [
-        'courses_by_class' => [
-            1 => $this->service->course_details_per_class_service(1),
-            2 => $this->service->course_details_per_class_service(2),
-            3 => $this->service->course_details_per_class_service(3),
-            4 => $this->service->course_details_per_class_service(4),
-            5 => $this->service->course_details_per_class_service(5),
-            6 => $this->service->course_details_per_class_service(6),
-            7 => $this->service->course_details_per_class_service(7),
-        ],
-    ];
-   }
-
-   public function schedule_per_class_controller():array{
-    return [
-        'schedule_per_class' => [
-            '7e' => $this->service->schedule_per_class_service('7e'),
-            '8e' => $this->service->schedule_per_class_service('8e'),
-            '9e' => $this->service->schedule_per_class_service('9e'),
-            'NS1'=> $this->service->schedule_per_class_service('NS1'),
-            'NS2'=> $this->service->schedule_per_class_service('NS2'),
-            'NS3'=> $this->service->schedule_per_class_service('NS3'),
-            'NS4'=> $this->service->schedule_per_class_service('NS4'),
-        ],
-    ];
-   }
-
-   public function students_per_class_controller(): array
+    public function __construct()
     {
-        return [
-            'student_per_class' => [
-                1 => $this->service->student_per_class_service(1),
-                2 => $this->service->student_per_class_service(2),
-                3 => $this->service->student_per_class_service(3),
-                4 => $this->service->student_per_class_service(4),
-                5 => $this->service->student_per_class_service(5),
-                6 => $this->service->student_per_class_service(6),
-                7 => $this->service->student_per_class_service(7),
-            ]
-        ];
+        $this->service = new AdmindashService();
     }
-    public function basic_info_per_class_controller(int $classId): array{
-    return [
-        'basic_info_per_class' => $this->service->basic_info_per_class_service($classId)
-    ];
-   }
 
-   
-   public function handle_post_actions_controller(array $post): array
+    public function dashboard_viewmodel_controller(): array
     {
-        if (!is_post_data()) {
-            return [];
+        $selected_class_name = (string)($_GET['class'] ?? '');
+        return $this->service->build_dashboard_viewmodel_service($selected_class_name);
+    }
+
+    public function handle_post_actions_controller(): array
+    {
+        if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+            return ['success' => true, 'message' => '', 'errors' => []];
         }
 
-        return match (true) {
-            isset($post['add_course'])    => $this->service->add_course($post),
-            isset($post['edit_course'])   => $this->service->edit_course($post),
-            isset($post['delete_course']) => $this->service->delete_course($post),
+        $action_name = (string)($_POST['action'] ?? '');
 
-            isset($post['add_student'])    => $this->service->add_student($post),
-            isset($post['edit_student'])   => $this->service->edit_student($post),
-            isset($post['delete_student']) => $this->service->delete_student($post),
+        if ($action_name === 'create_course') {
+            $service_result = $this->service->create_course_service($_POST);
+            $is_success = (bool)($service_result['success'] ?? false);
 
-            isset($post['edit_user'])   => $this->service->edit_user($post),
-            isset($post['delete_user']) => $this->service->delete_user($post),
+            return [
+                'success' => $is_success,
+                'message' => $is_success ? 'Course created.' : '',
+                'errors'  => (array)($service_result['errors'] ?? []),
+            ];
+        }
 
-            default => []
-        };
+        if ($action_name === 'update_course') {
+            $course_id = (int)($_POST['course_id'] ?? 0);
+            $service_result = $this->service->update_course_service($course_id, $_POST);
+            $is_success = (bool)($service_result['success'] ?? false);
+
+            return [
+                'success' => $is_success,
+                'message' => $is_success ? 'Course updated.' : '',
+                'errors'  => (array)($service_result['errors'] ?? []),
+            ];
+        }
+
+        if ($action_name === 'delete_course') {
+            $course_id = (int)($_POST['course_id'] ?? 0);
+            $service_result = $this->service->delete_course_service($course_id);
+            $is_success = (bool)($service_result['success'] ?? false);
+
+            return [
+                'success' => $is_success,
+                'message' => $is_success ? 'Course deleted.' : '',
+                'errors'  => (array)($service_result['errors'] ?? []),
+            ];
+        }
+
+         //schedule
+        if ($action_name === 'upsert_schedule_cell') {
+            $class_id  = (int)($_POST['class_id'] ?? 0);
+            $time_id   = (int)($_POST['time_id'] ?? 0);
+            $day_id    = (int)($_POST['day_id'] ?? 0);
+            $course_id = (int)($_POST['course_id'] ?? 0);
+
+            $service_result = $this->service->upsert_schedule_cell_service($class_id, $time_id, $day_id, $course_id);
+            $is_success = (bool)($service_result['success'] ?? false);
+
+            return [
+                'success' => $is_success,
+                'message' => $is_success ? 'Schedule updated.' : '',
+                'errors'  => (array)($service_result['errors'] ?? []),
+            ];
+        }
+
+        if ($action_name === 'delete_schedule_cell') {
+            $class_id = (int)($_POST['class_id'] ?? 0);
+            $time_id  = (int)($_POST['time_id'] ?? 0);
+            $day_id   = (int)($_POST['day_id'] ?? 0);
+
+            $service_result = $this->service->delete_schedule_cell_service($class_id, $time_id, $day_id);
+            $is_success = (bool)($service_result['success'] ?? false);
+
+            return [
+                'success' => $is_success,
+                'message' => $is_success ? 'Schedule cell cleared.' : '',
+                'errors'  => (array)($service_result['errors'] ?? []),
+            ];
+        }
+
+          //students
+        if ($action_name === 'create_student') {
+            $service_result = $this->service->create_student_service($_POST);
+            $is_success = (bool)($service_result['success'] ?? false);
+
+            return [
+                'success' => $is_success,
+                'message' => $is_success ? 'Student created.' : '',
+                'errors'  => (array)($service_result['errors'] ?? []),
+            ];
+        }
+
+        if ($action_name === 'update_student') {
+            $student_id = (int)($_POST['student_id'] ?? 0);
+            $service_result = $this->service->update_student_service($student_id, $_POST);
+            $is_success = (bool)($service_result['success'] ?? false);
+
+            return [
+                'success' => $is_success,
+                'message' => $is_success ? 'Student updated.' : '',
+                'errors'  => (array)($service_result['errors'] ?? []),
+            ];
+        }
+
+        if ($action_name === 'delete_student') {
+            $student_id = (int)($_POST['student_id'] ?? 0);
+            $service_result = $this->service->delete_student_service($student_id);
+            $is_success = (bool)($service_result['success'] ?? false);
+
+            return [
+                'success' => $is_success,
+                'message' => $is_success ? 'Student deleted.' : '',
+                'errors'  => (array)($service_result['errors'] ?? []),
+            ];
+        }
+
+        return ['success' => false, 'message' => '', 'errors' => ['Unknown action']];
     }
-
-   
-
-
-
-   
 }
